@@ -67,7 +67,8 @@ export function UpsellCombo({ onAddCombo, editMode, onCancelEdit }: UpsellComboP
 
   const allSelected = [...selectedDestilados, ...selectedGelos, ...selectedEnergeticos]
   const originalTotal = allSelected.reduce((sum, s) => sum + s.product.price * s.qty, 0)
-  const comboPrice = originalTotal * 0.5
+  const comboPrice = originalTotal * 0.7
+  const savings = originalTotal - comboPrice
 
   const hasDestilados = selectedDestilados.length > 0
   const hasGelos = selectedGelos.length > 0
@@ -132,7 +133,7 @@ export function UpsellCombo({ onAddCombo, editMode, onCancelEdit }: UpsellComboP
             <Percent className="w-4 h-4 text-white" />
           </div>
           <div>
-            <h3 className="font-bold text-foreground text-sm">Monte seu Combo com 50% OFF</h3>
+            <h3 className="font-bold text-foreground text-sm">Monte seu Combo com 30% OFF</h3>
             <p className="text-xs text-muted-foreground">Destilados + Gelos Saborizados + Energeticos</p>
           </div>
         </div>
@@ -328,9 +329,15 @@ export function UpsellCombo({ onAddCombo, editMode, onCancelEdit }: UpsellComboP
                   </span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="font-bold text-foreground">Total com 50% OFF:</span>
+                  <span className="font-bold text-foreground">Total com 30% OFF:</span>
                   <span className="font-bold text-amber-600 text-lg">
                     R$ {comboPrice.toFixed(2).replace(".", ",")}
+                  </span>
+                </div>
+                <div className="flex items-center justify-between mt-2 pt-2 border-t border-amber-200">
+                  <span className="font-bold text-green-700">Voce economizou:</span>
+                  <span className="font-bold text-green-600 text-lg">
+                    R$ {savings.toFixed(2).replace(".", ",")}
                   </span>
                 </div>
               </div>
@@ -361,7 +368,7 @@ export function UpsellCombo({ onAddCombo, editMode, onCancelEdit }: UpsellComboP
               active:scale-[0.98] transition-all duration-200 disabled:opacity-50"
           >
             <Check className="w-5 h-5" />
-            Adicionar Combo - R$ {comboPrice.toFixed(2).replace(".", ",")}
+            Adicionar Combo
           </Button>
         </div>
       )}

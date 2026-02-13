@@ -76,7 +76,7 @@ export function ProductDetail({ product, onClose, onSelectProduct }: ProductDeta
   }
 
   return (
-    <div className="fixed inset-0 bg-background z-50 overflow-y-auto animate-in fade-in duration-300">
+    <div data-product-scroll className="fixed inset-0 bg-background z-50 overflow-y-auto animate-in fade-in duration-300">
       <div className="max-w-lg mx-auto min-h-screen pb-24 animate-in slide-in-from-bottom-8 duration-500 ease-out">
         <button
           onClick={onClose}
@@ -322,7 +322,7 @@ export function ProductDetail({ product, onClose, onSelectProduct }: ProductDeta
           </div>
         </div>
 
-        <div className="fixed bottom-0 left-0 right-0 bg-card border-t border-border p-4 animate-in slide-in-from-bottom-4 duration-500 delay-500 fill-mode-both">
+        <div className="fixed bottom-0 left-0 right-0 bg-card border-t border-border p-4 shadow-[0_-4px_20px_rgba(0,0,0,0.1)]">
           <div className="max-w-lg mx-auto flex items-center gap-4">
             <div className="flex items-center gap-3 bg-secondary rounded-lg px-4 py-2">
               <button

@@ -94,7 +94,7 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                     </div>
                     <div className="flex-1 min-w-0">
                       <h3 className="font-medium text-foreground line-clamp-1">
-                        {item.isCombo ? "Combo 50% OFF" : item.product.name}
+                        {item.isCombo ? "Combo 30% OFF" : item.product.name}
                       </h3>
                       {item.isCombo && item.comboItems ? (
                         <div className="mt-0.5">

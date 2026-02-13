@@ -50,7 +50,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     const descParts = allItems.map((i) => `${i.qty}x ${i.product.name}`).join(" + ")
     const comboProduct: Product = {
       id: comboId,
-      name: "Combo 50% OFF",
+      name: "Combo 30% OFF",
       description: descParts,
       price: comboPrice,
       image: comboItems.destilados[0]?.product.image || "/placeholder.svg",
