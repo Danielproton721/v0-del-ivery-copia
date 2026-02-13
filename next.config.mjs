@@ -5,6 +5,16 @@ const nextConfig = {
   },
   images: {
     unoptimized: true,
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'imgcdn.dev',
+      },
+      {
+        protocol: 'https',
+        hostname: 'i.imgcdn.dev',
+      },
+    ],
   },
 }
 
