@@ -31,7 +31,7 @@ export function ProductDetail({ product, onClose, onSelectProduct }: ProductDeta
     const scrollable = document.querySelector('[data-product-scroll]')
     if (!scrollable) return
     const { scrollTop, scrollHeight, clientHeight } = scrollable
-    const isAtBottom = scrollTop + clientHeight >= scrollHeight - 20
+    const isAtBottom = scrollTop + clientHeight >= scrollHeight - 40
     setShowBottomBar(!isAtBottom)
   }, [])
 
@@ -39,6 +39,7 @@ export function ProductDetail({ product, onClose, onSelectProduct }: ProductDeta
     const scrollable = document.querySelector('[data-product-scroll]')
     if (!scrollable) return
     scrollable.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll()
     return () => scrollable.removeEventListener('scroll', handleScroll)
   }, [handleScroll])
 
@@ -338,7 +339,7 @@ export function ProductDetail({ product, onClose, onSelectProduct }: ProductDeta
           </div>
         </div>
 
-        <div className={`fixed bottom-0 left-0 right-0 bg-card border-t border-border p-4 transition-transform duration-300 ease-in-out ${showBottomBar ? 'translate-y-0' : 'translate-y-full'}`}>
+        <div className={`fixed bottom-0 left-0 right-0 bg-card border-t border-border p-4 shadow-[0_-4px_20px_rgba(0,0,0,0.1)] transition-all duration-500 ease-in-out ${showBottomBar ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'}`}>
           <div className="max-w-lg mx-auto flex items-center gap-4">
             <div className="flex items-center gap-3 bg-secondary rounded-lg px-4 py-2">
               <button
