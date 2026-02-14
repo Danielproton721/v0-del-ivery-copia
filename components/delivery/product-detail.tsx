@@ -76,8 +76,9 @@ export function ProductDetail({ product, onClose, onSelectProduct }: ProductDeta
   }
 
   return (
-    <div data-product-scroll className="fixed inset-0 bg-background z-50 overflow-y-auto animate-in fade-in duration-300">
-      <div className="max-w-lg mx-auto min-h-screen pb-24 animate-in slide-in-from-bottom-8 duration-500 ease-out">
+    <div data-product-scroll className="fixed inset-0 bg-background z-50 flex flex-col animate-in fade-in duration-300">
+      <div className="flex-1 overflow-y-auto">
+      <div className="max-w-lg mx-auto min-h-full pb-4 animate-in slide-in-from-bottom-8 duration-500 ease-out">
         <button
           onClick={onClose}
           className="fixed top-4 left-4 z-10 bg-accent text-accent-foreground px-4 py-2 rounded-full font-medium flex items-center gap-2 shadow-md
@@ -322,34 +323,36 @@ export function ProductDetail({ product, onClose, onSelectProduct }: ProductDeta
           </div>
         </div>
 
-        <div className="fixed bottom-0 left-0 right-0 bg-card border-t border-border p-4 shadow-[0_-4px_20px_rgba(0,0,0,0.1)]">
-          <div className="max-w-lg mx-auto flex items-center gap-4">
-            <div className="flex items-center gap-3 bg-secondary rounded-lg px-4 py-2">
-              <button
-                onClick={() => setQuantity((q) => Math.max(minQty, q - 1))}
-                disabled={quantity <= minQty}
-                className="text-muted-foreground hover:text-foreground hover:scale-110 active:scale-90 disabled:opacity-50 transition-all duration-200"
-              >
-                <Minus className="w-5 h-5" />
-              </button>
-              <span className="font-medium text-foreground w-6 text-center transition-all duration-200">
-                {quantity}
-              </span>
-              <button
-                onClick={() => setQuantity((q) => q + 1)}
-                className="text-muted-foreground hover:text-foreground hover:scale-110 active:scale-90 transition-all duration-200"
-              >
-                <Plus className="w-5 h-5" />
-              </button>
-            </div>
-            <Button
-              onClick={handleAddToCart}
-              disabled={isBelowMinimum}
-              className="flex-1 bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] py-6 text-lg font-semibold transition-all duration-200 disabled:opacity-50"
+      </div>
+      </div>
+
+      <div className="flex-shrink-0 bg-card border-t border-border p-4 shadow-[0_-4px_20px_rgba(0,0,0,0.1)]">
+        <div className="max-w-lg mx-auto flex items-center gap-4">
+          <div className="flex items-center gap-3 bg-secondary rounded-lg px-4 py-2">
+            <button
+              onClick={() => setQuantity((q) => Math.max(minQty, q - 1))}
+              disabled={quantity <= minQty}
+              className="text-muted-foreground hover:text-foreground hover:scale-110 active:scale-90 disabled:opacity-50 transition-all duration-200"
             >
-              Adicionar R$ {totalPrice.toFixed(2).replace(".", ",")}
-            </Button>
+              <Minus className="w-5 h-5" />
+            </button>
+            <span className="font-medium text-foreground w-6 text-center transition-all duration-200">
+              {quantity}
+            </span>
+            <button
+              onClick={() => setQuantity((q) => q + 1)}
+              className="text-muted-foreground hover:text-foreground hover:scale-110 active:scale-90 transition-all duration-200"
+            >
+              <Plus className="w-5 h-5" />
+            </button>
           </div>
+          <Button
+            onClick={handleAddToCart}
+            disabled={isBelowMinimum}
+            className="flex-1 bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] py-6 text-lg font-semibold transition-all duration-200 disabled:opacity-50"
+          >
+            Adicionar R$ {totalPrice.toFixed(2).replace(".", ",")}
+          </Button>
         </div>
       </div>
     </div>
