@@ -44,7 +44,7 @@ export function CartButton({ onClick }: CartButtonProps) {
   return (
     <button
       onClick={onClick}
-      className={`fixed bottom-4 left-4 right-4 max-w-lg mx-auto bg-primary text-primary-foreground rounded-xl py-4 px-6 flex items-center justify-between shadow-lg z-50 
+      className={`fixed bottom-[calc(1rem+env(safe-area-inset-bottom))] left-4 right-4 max-w-lg mx-auto bg-primary text-primary-foreground rounded-xl py-4 px-6 flex items-center justify-between shadow-lg z-50 
         hover:bg-primary/90 hover:shadow-2xl hover:scale-[1.02] hover:-translate-y-1
         active:scale-[0.98] active:shadow-lg
         transition-all duration-300 ease-out

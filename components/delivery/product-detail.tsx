@@ -315,7 +315,7 @@ export function ProductDetail({ product, onClose, onSelectProduct }: ProductDeta
       </div>
       </div>
 
-      <div className="flex-shrink-0 bg-card border-t border-border p-4 shadow-[0_-4px_20px_rgba(0,0,0,0.1)]">
+      <div className="flex-shrink-0 bg-card border-t border-border p-4 pb-[calc(1rem+env(safe-area-inset-bottom))] shadow-[0_-4px_20px_rgba(0,0,0,0.1)]">
         <div className="max-w-lg mx-auto flex items-center gap-4">
           <div className="flex items-center gap-3 bg-secondary rounded-lg px-4 py-2">
             <button
