@@ -132,3 +132,8 @@
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
+/* Fix para iOS Safari - smooth scroll em containers */
+.-webkit-overflow-scrolling-touch {
+  -webkit-overflow-scrolling: touch;
+}
