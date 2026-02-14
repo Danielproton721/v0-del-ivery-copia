@@ -44,11 +44,6 @@ export function CompactProductCard({ product, onClick, index = 0 }: CompactProdu
             R$ {product.price.toFixed(2).replace(".", ",")}
           </span>
         </div>
-        {product.minQuantity && (
-          <p className="text-[10px] text-muted-foreground mt-0.5">
-            Pedido minimo: {product.minQuantity} un
-          </p>
-        )}
       </div>
       <div className="relative w-24 h-24 rounded-lg overflow-hidden flex-shrink-0 group bg-secondary/30">
         <Image
