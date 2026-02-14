@@ -59,11 +59,6 @@ export function FeaturedProductCard({ product, onClick, index = 0 }: FeaturedPro
             R$ {product.price.toFixed(2).replace(".", ",")}
           </span>
         </div>
-        {product.minQuantity && (
-          <p className="text-[10px] text-muted-foreground mt-0.5">
-            Pedido minimo: {product.minQuantity} un
-          </p>
-        )}
         {product.stock && (
           <p className="text-xs text-accent mt-2 font-medium">
             Apenas {product.stock} unidade(s) com esse preço especial

@@ -17,14 +17,11 @@ interface ProductDetailProps {
 
 export function ProductDetail({ product, onClose, onSelectProduct }: ProductDetailProps) {
   const { addItem, freeAdditionalChosen, setFreeAdditionalChosen } = useCart()
-  const minQty = product.minQuantity || 1
-  const [quantity, setQuantity] = useState(minQty)
+  const [quantity, setQuantity] = useState(1)
   const [selectedAdditionals, setSelectedAdditionals] = useState<
     Record<string, number>
   >({})
   const [observation, setObservation] = useState("")
-
-  const isBelowMinimum = quantity < minQty
 
   const suggestedProducts = useMemo(() => {
     const others = products.filter((p) => p.id !== product.id)
@@ -114,14 +111,6 @@ export function ProductDetail({ product, onClose, onSelectProduct }: ProductDeta
             R$ {product.price.toFixed(2).replace(".", ",")}
           </p>
           
-          {product.minQuantity && product.minQuantity > 1 && (
-            <div className="mt-2 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2">
-              <p className="text-sm text-amber-700 font-medium">
-                Pedido minimo: {product.minQuantity} unidades
-              </p>
-            </div>
-          )}
-
           {product.stock && (
             <p className="text-sm text-accent font-medium mt-2">
               Apenas {product.stock} disponíveis
@@ -330,8 +319,8 @@ export function ProductDetail({ product, onClose, onSelectProduct }: ProductDeta
         <div className="max-w-lg mx-auto flex items-center gap-4">
           <div className="flex items-center gap-3 bg-secondary rounded-lg px-4 py-2">
             <button
-              onClick={() => setQuantity((q) => Math.max(minQty, q - 1))}
-              disabled={quantity <= minQty}
+              onClick={() => setQuantity((q) => Math.max(1, q - 1))}
+              disabled={quantity <= 1}
               className="text-muted-foreground hover:text-foreground hover:scale-110 active:scale-90 disabled:opacity-50 transition-all duration-200"
             >
               <Minus className="w-5 h-5" />
@@ -348,8 +337,7 @@ export function ProductDetail({ product, onClose, onSelectProduct }: ProductDeta
           </div>
           <Button
             onClick={handleAddToCart}
-            disabled={isBelowMinimum}
-            className="flex-1 bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] py-6 text-lg font-semibold transition-all duration-200 disabled:opacity-50"
+            className="flex-1 bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] py-6 text-lg font-semibold transition-all duration-200"
           >
             Adicionar R$ {totalPrice.toFixed(2).replace(".", ",")}
           </Button>
