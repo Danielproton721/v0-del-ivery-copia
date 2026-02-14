@@ -219,8 +219,8 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
                   value={customerData.name}
                   onChange={(e) => setCustomerData(prev => ({ ...prev, name: e.target.value }))}
                   placeholder="Seu nome"
-                  className="w-full px-4 py-3 rounded-xl border border-border bg-secondary/50 text-foreground placeholder:text-muted-foreground
-                    focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-200"
+                  className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground
+                    focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors appearance-none"
                 />
               </div>
 
@@ -231,8 +231,8 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
                   value={customerData.email}
                   onChange={(e) => setCustomerData(prev => ({ ...prev, email: e.target.value }))}
                   placeholder="seu@email.com"
-                  className="w-full px-4 py-3 rounded-xl border border-border bg-secondary/50 text-foreground placeholder:text-muted-foreground
-                    focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-200"
+                  className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground
+                    focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors appearance-none"
                 />
               </div>
 
@@ -253,8 +253,8 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
                   }}
                   placeholder="(00) 00000-0000"
                   maxLength={15}
-                  className="w-full px-4 py-3 rounded-xl border border-border bg-secondary/50 text-foreground placeholder:text-muted-foreground
-                    focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-200"
+                  className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground
+                    focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors appearance-none"
                 />
               </div>
 
@@ -266,8 +266,8 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
                   onChange={(e) => setCustomerData(prev => ({ ...prev, document: formatDocument(e.target.value) }))}
                   placeholder="000.000.000-00"
                   maxLength={18}
-                  className="w-full px-4 py-3 rounded-xl border border-border bg-secondary/50 text-foreground placeholder:text-muted-foreground
-                    focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-200"
+                  className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground
+                    focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors appearance-none"
                 />
               </div>
 
@@ -311,8 +311,8 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
                     }}
                     placeholder="00000-000"
                     maxLength={9}
-                    className="w-full px-4 py-3 rounded-xl border border-border bg-secondary/50 text-foreground placeholder:text-muted-foreground
-                      focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-200"
+                    className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground
+                      focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors appearance-none"
                   />
                   {loadingCep && (
                     <div className="absolute right-3 top-1/2 -translate-y-1/2">
@@ -329,8 +329,8 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
                   value={addressData.city}
                   onChange={(e) => setAddressData(prev => ({ ...prev, city: e.target.value }))}
                   placeholder="Nome da cidade"
-                  className="w-full px-4 py-3 rounded-xl border border-border bg-secondary/50 text-foreground placeholder:text-muted-foreground
-                    focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-200"
+                  className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground
+                    focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors appearance-none"
                 />
               </div>
 
@@ -341,8 +341,8 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
                   value={addressData.neighborhood}
                   onChange={(e) => setAddressData(prev => ({ ...prev, neighborhood: e.target.value }))}
                   placeholder="Nome do bairro"
-                  className="w-full px-4 py-3 rounded-xl border border-border bg-secondary/50 text-foreground placeholder:text-muted-foreground
-                    focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-200"
+                  className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground
+                    focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors appearance-none"
                 />
               </div>
 
@@ -353,8 +353,8 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
                   value={addressData.street}
                   onChange={(e) => setAddressData(prev => ({ ...prev, street: e.target.value }))}
                   placeholder="Nome da rua"
-                  className="w-full px-4 py-3 rounded-xl border border-border bg-secondary/50 text-foreground placeholder:text-muted-foreground
-                    focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-200"
+                  className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground
+                    focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors appearance-none"
                 />
               </div>
 
@@ -365,8 +365,8 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
                   value={addressData.number}
                   onChange={(e) => setAddressData(prev => ({ ...prev, number: e.target.value }))}
                   placeholder="123"
-                  className="w-full px-4 py-3 rounded-xl border border-border bg-secondary/50 text-foreground placeholder:text-muted-foreground
-                    focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-200"
+                  className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground
+                    focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors appearance-none"
                 />
               </div>
 
@@ -377,8 +377,8 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
                   value={addressData.complement}
                   onChange={(e) => setAddressData(prev => ({ ...prev, complement: e.target.value }))}
                   placeholder="Apto, bloco, referencia..."
-                  className="w-full px-4 py-3 rounded-xl border border-border bg-secondary/50 text-foreground placeholder:text-muted-foreground
-                    focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-200"
+                  className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground
+                    focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors appearance-none"
                 />
               </div>
 
