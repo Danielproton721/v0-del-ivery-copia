@@ -58,12 +58,12 @@ export function StoreHeader({ userAddress, onChangeAddress }: StoreHeaderProps) 
 
         {/* Logo centralizada e maior */}
         <div className="flex flex-col items-center animate-in fade-in slide-in-from-top-4 duration-500">
-          <div className="w-[80px] h-[80px] flex items-center justify-center overflow-hidden hover:scale-105 transition-all duration-300 cursor-pointer">
+          <div className="w-[104px] h-[104px] flex items-center justify-center overflow-hidden hover:scale-105 transition-all duration-300 cursor-pointer">
             <Image
               src="/logo.png"
               alt="Arco Bebidas"
-              width={80}
-              height={80}
+              width={104}
+              height={104}
               className="object-contain"
             />
           </div>

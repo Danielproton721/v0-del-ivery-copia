@@ -1386,9 +1386,9 @@ export const reviews: Review[] = [
 export const categories = [
   { id: "ofertas", name: "Ofertas do Dia" },
   { id: "cervejas", name: "Cervejas" },
+  { id: "comida", name: "Comida" },
   { id: "queridinhos", name: "Destilados e Drinks Fortes" },
   { id: "combinados", name: "Energeticos" },
   { id: "temaki", name: "Refrigerantes" },
   { id: "poke", name: "Gelinhos" },
-  { id: "comida", name: "Comida" },
 ]
