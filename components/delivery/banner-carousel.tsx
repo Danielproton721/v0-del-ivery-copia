@@ -7,7 +7,7 @@ const banners = [
   {
     id: 1,
     src: "/banners/banner-1.jpg",
-    alt: "Frete Gratis em pedidos selecionados",
+    alt: "Deu fome? Peca aqui tambem! Entrega em minutos",
   },
   {
     id: 2,
