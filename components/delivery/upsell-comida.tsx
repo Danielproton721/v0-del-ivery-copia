@@ -54,7 +54,14 @@ export function UpsellComida({ onClose, onContinue }: UpsellComidaProps) {
   const [isClosing, setIsClosing] = useState(false)
 
   const upsellProducts = useMemo(() => {
-    const filtered = products.filter((p) => UPSELL_PRODUCT_IDS.includes(p.id))
+    const seen = new Set<string>()
+    const filtered = products.filter((p) => {
+      if (UPSELL_PRODUCT_IDS.includes(p.id) && !seen.has(p.id)) {
+        seen.add(p.id)
+        return true
+      }
+      return false
+    })
     return shuffleArray(filtered)
   }, [])
 
