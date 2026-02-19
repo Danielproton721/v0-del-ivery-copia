@@ -1388,6 +1388,7 @@ export const categories = [
   { id: "cervejas", name: "Cervejas" },
   { id: "comida", name: "Comida" },
   { id: "queridinhos", name: "Destilados e Drinks Fortes" },
+  { id: "combinados", name: "Energeticos" },
   { id: "temaki", name: "Refrigerantes" },
   { id: "poke", name: "Gelinhos" },
 ]
