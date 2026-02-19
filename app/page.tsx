@@ -75,7 +75,7 @@ function DeliveryApp() {
         onCategoryChange={handleCategoryChange}
       />
 
-      <BannerCarousel />
+      <BannerCarousel onBannerClick={handleCategoryChange} />
 
       <main className={`max-w-lg mx-auto px-4 py-6 transition-all duration-300 ${isTransitioning ? "opacity-0 translate-y-2" : "opacity-100 translate-y-0"}`}>
         {activeCategory === "ofertas" ? (
