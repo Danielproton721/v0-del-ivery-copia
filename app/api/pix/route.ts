@@ -15,6 +15,10 @@ export async function POST(request: NextRequest) {
 
     const secretKey = process.env.MEDUSAPAY_SECRET_KEY
 
+    console.log("[v0] MEDUSAPAY_SECRET_KEY exists:", !!secretKey)
+    console.log("[v0] MEDUSAPAY_SECRET_KEY length:", secretKey?.length || 0)
+    console.log("[v0] All env keys with MEDUSA:", Object.keys(process.env).filter(k => k.includes("MEDUSA")))
+
     if (!secretKey) {
       return NextResponse.json(
         { error: "Chave da API nao configurada" },
