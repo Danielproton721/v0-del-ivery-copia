@@ -20,6 +20,7 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
   const { items, totalPrice, updateQuantity, removeItem, clearCart, addCombo } = useCart()
   const [showPixCheckout, setShowPixCheckout] = useState(false)
   const [showUpsellComida, setShowUpsellComida] = useState(false)
+  const [upsellShown, setUpsellShown] = useState(false)
   const [editingComboId, setEditingComboId] = useState<string | null>(null)
 
   const canCheckout = totalPrice >= MIN_ORDER_VALUE
@@ -27,12 +28,16 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
 
   const handleCheckout = () => {
     if (!canCheckout) return
-    setShowUpsellComida(true)
+    if (!upsellShown) {
+      setShowUpsellComida(true)
+      setUpsellShown(true)
+    } else {
+      setShowPixCheckout(true)
+    }
   }
 
-  const handleUpsellContinue = () => {
+  const handleUpsellClose = () => {
     setShowUpsellComida(false)
-    setShowPixCheckout(true)
   }
 
   const handlePaymentSuccess = () => {
@@ -251,8 +256,8 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
       {/* Modal de Upsell Comida */}
       {showUpsellComida && (
         <UpsellComida
-          onClose={() => setShowUpsellComida(false)}
-          onContinue={handleUpsellContinue}
+          onClose={handleUpsellClose}
+          onContinue={handleUpsellClose}
         />
       )}
 
