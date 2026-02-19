@@ -55,8 +55,11 @@ function DeliveryApp() {
     setTimeout(() => {
       setActiveCategory(categoryId)
       setIsTransitioning(false)
-      // Scroll para o topo da pagina
-      window.scrollTo({ top: 0, behavior: "smooth" })
+      // Scroll ate a area dos produtos
+      const productsSection = document.getElementById("products-section")
+      if (productsSection) {
+        productsSection.scrollIntoView({ behavior: "smooth", block: "start" })
+      }
     }, 150)
   }, [activeCategory])
 
@@ -77,7 +80,7 @@ function DeliveryApp() {
 
       <BannerCarousel onBannerClick={handleCategoryChange} />
 
-      <main className={`max-w-lg mx-auto px-4 py-6 transition-all duration-300 ${isTransitioning ? "opacity-0 translate-y-2" : "opacity-100 translate-y-0"}`}>
+      <main id="products-section" className={`max-w-lg mx-auto px-4 py-6 transition-all duration-300 ${isTransitioning ? "opacity-0 translate-y-2" : "opacity-100 translate-y-0"}`}>
         {activeCategory === "ofertas" ? (
           <>
             <section className="mb-8">
