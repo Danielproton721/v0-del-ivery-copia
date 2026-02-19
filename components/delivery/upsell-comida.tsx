@@ -1,0 +1,172 @@
+"use client"
+
+import { useState, useMemo } from "react"
+import Image from "next/image"
+import { X, Plus, ShoppingBag, ArrowRight, Flame } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { products } from "@/lib/data"
+import { useCart } from "@/lib/cart-context"
+
+const UPSELL_PRODUCT_IDS = [
+  "113", // O`BURGER
+  "101", // Bolinho de Carne Seca com Queijo
+  "100", // Batata Frita com Queijo e Bacon
+  "102", // Camarao Ao Alho E Oleo
+  "103", // Chapa Mista G
+  "104", // Coxinha de Frango com Requeijao
+  "105", // Escalope de Mignon
+  "107", // File Acebolado
+  "108", // File de Tilapia com Fritas
+  "109", // File em Medalhao com Alcaparras
+  "110", // Fraldinha Mista
+  "111", // Frango a Passarinho
+  "114", // Pastel de Carne com Queijo
+  "115", // Porcao de Feijao Tropeiro 300g
+  "116", // Torresmo Pururuca com Mandioca
+  "117", // Tulipas com Molho Especial
+]
+
+function shuffleArray<T>(array: T[]): T[] {
+  const shuffled = [...array]
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
+  }
+  return shuffled
+}
+
+interface UpsellComidaProps {
+  onClose: () => void
+  onContinue: () => void
+}
+
+export function UpsellComida({ onClose, onContinue }: UpsellComidaProps) {
+  const { addItem } = useCart()
+  const [addedIds, setAddedIds] = useState<Set<string>>(new Set())
+
+  const upsellProducts = useMemo(() => {
+    const filtered = products.filter((p) => UPSELL_PRODUCT_IDS.includes(p.id))
+    return shuffleArray(filtered)
+  }, [])
+
+  const handleAddItem = (product: (typeof upsellProducts)[0]) => {
+    addItem(product, 1, [], "")
+    setAddedIds((prev) => new Set(prev).add(product.id))
+  }
+
+  const addedCount = addedIds.size
+
+  return (
+    <div className="fixed inset-0 z-[60]">
+      <div
+        className="absolute inset-0 bg-black/50 animate-in fade-in duration-300"
+        onClick={onClose}
+      />
+      <div className="absolute bottom-0 left-0 right-0 bg-card rounded-t-3xl max-h-[85vh] overflow-hidden flex flex-col animate-in slide-in-from-bottom-full duration-500 ease-out">
+        <div className="max-w-lg mx-auto w-full flex flex-col flex-1 min-h-0">
+          {/* Header */}
+          <div className="flex-shrink-0 bg-card border-b border-border p-4">
+            <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center gap-2">
+                <div className="w-9 h-9 rounded-full bg-red-500 flex items-center justify-center">
+                  <Flame className="w-5 h-5 text-white" />
+                </div>
+                <div>
+                  <h2 className="text-lg font-bold text-foreground">Bateu a fome?</h2>
+                  <p className="text-xs text-muted-foreground">
+                    Adicione um prato ao seu pedido
+                  </p>
+                </div>
+              </div>
+              <button
+                onClick={onClose}
+                className="p-2 rounded-full hover:bg-secondary"
+              >
+                <X className="w-5 h-5 text-muted-foreground" />
+              </button>
+            </div>
+          </div>
+
+          {/* Products list */}
+          <div className="flex-1 overflow-y-auto p-4 min-h-0">
+            <div className="space-y-3">
+              {upsellProducts.map((product, index) => {
+                const isAdded = addedIds.has(product.id)
+                return (
+                  <div
+                    key={product.id}
+                    style={{ animationDelay: `${index * 50}ms` }}
+                    className="flex items-center gap-3 p-3 rounded-xl border border-border bg-card hover:bg-secondary/40 transition-colors animate-in fade-in slide-in-from-bottom-2 fill-mode-both"
+                  >
+                    <div className="relative w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 bg-secondary/30">
+                      <Image
+                        src={product.image || "/placeholder.svg"}
+                        alt={product.name}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-medium text-foreground text-sm line-clamp-1">
+                        {product.name}
+                      </h3>
+                      {product.description && (
+                        <p className="text-xs text-muted-foreground line-clamp-2 mt-0.5">
+                          {product.description}
+                        </p>
+                      )}
+                      <p className="text-sm font-bold text-primary mt-1">
+                        R$ {product.price.toFixed(2).replace(".", ",")}
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => handleAddItem(product)}
+                      disabled={isAdded}
+                      className={`flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center transition-all duration-200
+                        ${
+                          isAdded
+                            ? "bg-green-500 text-white scale-110"
+                            : "bg-primary text-primary-foreground hover:bg-primary/90 hover:scale-110 active:scale-90"
+                        }`}
+                    >
+                      {isAdded ? (
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                      ) : (
+                        <Plus className="w-4 h-4" />
+                      )}
+                    </button>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+
+          {/* Footer */}
+          <div className="flex-shrink-0 border-t border-border p-4 bg-card space-y-3">
+            <Button
+              onClick={onContinue}
+              className="w-full py-6 bg-primary text-primary-foreground hover:bg-primary/90 text-base font-semibold gap-2
+                hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
+            >
+              <ShoppingBag className="w-5 h-5" />
+              {addedCount > 0
+                ? `Continuar com ${addedCount} ${addedCount === 1 ? "item" : "itens"} adicionado${addedCount === 1 ? "" : "s"}`
+                : "Pagar com PIX"}
+              <ArrowRight className="w-4 h-4 ml-1" />
+            </Button>
+            {addedCount === 0 && (
+              <button
+                onClick={onContinue}
+                className="w-full text-center text-sm text-muted-foreground hover:text-foreground transition-colors py-1"
+              >
+                Nao quero, obrigado
+              </button>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
