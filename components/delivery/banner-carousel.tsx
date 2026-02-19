@@ -8,20 +8,27 @@ const banners = [
     id: 1,
     src: "/banners/banner-1.jpg",
     alt: "Deu fome? Peca aqui tambem! Entrega em minutos",
+    categoryLink: "comida",
   },
   {
     id: 2,
     src: "/banners/banner-2.jpg",
     alt: "Destilados Premium com desconto",
+    categoryLink: null,
   },
   {
     id: 3,
     src: "/banners/banner-3.jpg",
     alt: "Drinks e Combos especiais",
+    categoryLink: null,
   },
 ]
 
-export function BannerCarousel() {
+interface BannerCarouselProps {
+  onBannerClick?: (categoryId: string) => void
+}
+
+export function BannerCarousel({ onBannerClick }: BannerCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isDragging, setIsDragging] = useState(false)
   const [startX, setStartX] = useState(0)
@@ -103,7 +110,15 @@ export function BannerCarousel() {
           }}
         >
           {banners.map((banner) => (
-            <div key={banner.id} className="w-full flex-shrink-0">
+            <div
+              key={banner.id}
+              className={`w-full flex-shrink-0 ${banner.categoryLink ? "cursor-pointer" : ""}`}
+              onClick={() => {
+                if (banner.categoryLink && !isDragging && onBannerClick) {
+                  onBannerClick(banner.categoryLink)
+                }
+              }}
+            >
               <div className="relative aspect-[16/7] w-full">
                 <Image
                   src={banner.src}
