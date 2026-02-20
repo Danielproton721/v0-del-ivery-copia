@@ -47,9 +47,10 @@ interface UpsellComidaProps {
   onClose: () => void
   onContinue: () => void
   onSkip?: () => void
+  onViewMenu?: () => void
 }
 
-export function UpsellComida({ onClose, onContinue, onSkip }: UpsellComidaProps) {
+export function UpsellComida({ onClose, onContinue, onSkip, onViewMenu }: UpsellComidaProps) {
   const { addItem } = useCart()
   const [addedIds, setAddedIds] = useState<Set<string>>(new Set())
   const [isClosing, setIsClosing] = useState(false)
@@ -84,6 +85,13 @@ export function UpsellComida({ onClose, onContinue, onSkip }: UpsellComidaProps)
   const handleSkip = () => {
     setIsClosing(true)
     setTimeout(() => (onSkip ? onSkip() : onContinue()), 400)
+  }
+
+  const handleViewMenu = () => {
+    setIsClosing(true)
+    setTimeout(() => {
+      if (onViewMenu) onViewMenu()
+    }, 400)
   }
 
   const addedCount = addedIds.size
@@ -179,24 +187,34 @@ export function UpsellComida({ onClose, onContinue, onSkip }: UpsellComidaProps)
 
           {/* Footer */}
           <div className="flex-shrink-0 border-t border-border p-4 pb-[calc(1rem+env(safe-area-inset-bottom))] bg-card space-y-3">
-            <Button
-              onClick={handleContinue}
-              className="w-full py-6 bg-primary text-primary-foreground hover:bg-primary/90 text-base font-semibold gap-2
-                hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
-            >
-              <ShoppingBag className="w-5 h-5" />
-              {addedCount > 0
-                ? `Continuar com ${addedCount} ${addedCount === 1 ? "item" : "itens"} adicionado${addedCount === 1 ? "" : "s"}`
-                : "Finalizar compra"}
-              <ArrowRight className="w-4 h-4 ml-1" />
-            </Button>
-            {addedCount === 0 && (
-              <button
-                onClick={handleSkip}
-                className="w-full text-center text-sm text-muted-foreground hover:text-foreground transition-colors py-1"
+            {addedCount > 0 ? (
+              <Button
+                onClick={handleContinue}
+                className="w-full py-6 bg-primary text-primary-foreground hover:bg-primary/90 text-base font-semibold gap-2
+                  hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
               >
-                Nao quero, obrigado
-              </button>
+                <ShoppingBag className="w-5 h-5" />
+                {`Continuar com ${addedCount} ${addedCount === 1 ? "item" : "itens"} adicionado${addedCount === 1 ? "" : "s"}`}
+                <ArrowRight className="w-4 h-4 ml-1" />
+              </Button>
+            ) : (
+              <>
+                <Button
+                  onClick={handleSkip}
+                  className="w-full py-6 bg-primary text-primary-foreground hover:bg-primary/90 text-base font-semibold gap-2
+                    hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
+                >
+                  <ShoppingBag className="w-5 h-5" />
+                  {"Nao quero. Finalizar"}
+                  <ArrowRight className="w-4 h-4 ml-1" />
+                </Button>
+                <button
+                  onClick={handleViewMenu}
+                  className="w-full text-center text-sm font-medium text-primary hover:text-primary/80 underline transition-colors py-1"
+                >
+                  Ver cardapio completo
+                </button>
+              </>
             )}
           </div>
         </div>

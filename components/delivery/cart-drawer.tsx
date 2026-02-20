@@ -12,11 +12,12 @@ import { UpsellComida, UPSELL_PRODUCT_IDS } from "./upsell-comida"
 interface CartDrawerProps {
   isOpen: boolean
   onClose: () => void
+  onNavigateToCategory?: (categoryId: string) => void
 }
 
 const MIN_ORDER_VALUE = 50
 
-export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
+export function CartDrawer({ isOpen, onClose, onNavigateToCategory }: CartDrawerProps) {
   const { items, totalPrice, updateQuantity, removeItem, clearCart, addCombo } = useCart()
   const [showPixCheckout, setShowPixCheckout] = useState(false)
   const [showUpsellComida, setShowUpsellComida] = useState(false)
@@ -28,13 +29,10 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
   const remainingValue = MIN_ORDER_VALUE - totalPrice
 
   const handleCheckout = () => {
-    console.log("[v0] handleCheckout called, canCheckout:", canCheckout, "hasUpsellItemInCart:", hasUpsellItemInCart)
     if (!canCheckout) return
     if (!hasUpsellItemInCart) {
-      console.log("[v0] Showing upsell comida")
       setShowUpsellComida(true)
     } else {
-      console.log("[v0] Showing PIX checkout")
       setShowPixCheckout(true)
     }
   }
@@ -46,6 +44,14 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
   const handleUpsellSkip = () => {
     setShowUpsellComida(false)
     setShowPixCheckout(true)
+  }
+
+  const handleViewMenu = () => {
+    setShowUpsellComida(false)
+    onClose()
+    if (onNavigateToCategory) {
+      onNavigateToCategory("comida")
+    }
   }
 
   const handlePaymentSuccess = () => {
@@ -281,6 +287,7 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
           onClose={handleUpsellClose}
           onContinue={handleUpsellClose}
           onSkip={handleUpsellSkip}
+          onViewMenu={handleViewMenu}
         />
       )}
 
