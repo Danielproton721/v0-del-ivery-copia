@@ -114,7 +114,7 @@ export function UpsellComida({ onClose, onContinue, onSkip, onViewMenu }: Upsell
                   <span role="img" aria-label="hamburger">🍔</span>
                 </div>
                 <div>
-                  <h2 className="text-lg font-bold text-foreground">Bateu a fome? Que tal pedir um acompanhamento</h2>
+                  <h2 className="text-lg font-bold text-foreground">Bateu a fome? Que tal pedir um acompanhamento?</h2>
                   <p className="text-xs text-muted-foreground">
                     Adicione um prato ao seu pedido
                   </p>
