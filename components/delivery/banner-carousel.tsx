@@ -13,8 +13,8 @@ const banners = [
   {
     id: 2,
     src: "/banners/banner-2.jpg",
-    alt: "Destilados Premium com desconto",
-    categoryLink: null,
+    alt: "Destilados Premium - Drinks Fortes",
+    categoryLink: "queridinhos",
   },
   {
     id: 3,
