@@ -29,21 +29,27 @@ export function CartDrawer({ isOpen, onClose, onNavigateToCategory }: CartDrawer
   const remainingValue = MIN_ORDER_VALUE - totalPrice
 
   const handleCheckout = () => {
+    console.log("[v0] handleCheckout - canCheckout:", canCheckout, "hasUpsellItemInCart:", hasUpsellItemInCart)
     if (!canCheckout) return
     if (!hasUpsellItemInCart) {
+      console.log("[v0] showing upsell comida")
       setShowUpsellComida(true)
     } else {
+      console.log("[v0] showing pix checkout directly")
       setShowPixCheckout(true)
     }
   }
 
   const handleUpsellClose = () => {
+    console.log("[v0] upsell close - back to cart")
     setShowUpsellComida(false)
   }
 
   const handleUpsellSkip = () => {
+    console.log("[v0] upsell skip - going to pix checkout")
     setShowUpsellComida(false)
     setShowPixCheckout(true)
+    console.log("[v0] showPixCheckout set to true")
   }
 
   const handleViewMenu = () => {

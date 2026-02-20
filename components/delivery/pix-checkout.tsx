@@ -33,6 +33,7 @@ interface AddressData {
 }
 
 export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutProps) {
+  console.log("[v0] PixCheckout RENDERED - amount:", amount, "items:", items.length)
   const [step, setStep] = useState<"form" | "address" | "loading" | "qrcode" | "success" | "error">("form")
   const [customerData, setCustomerData] = useState<CustomerData>({
     name: "",
@@ -125,6 +126,15 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
     setError("")
 
     try {
+      console.log("[v0] Sending PIX request with data:", {
+        amount,
+        customerName: customerData.name,
+        customerEmail: customerData.email,
+        customerDocument: customerData.document,
+        customerPhone: customerData.phone,
+        itemsCount: items.length,
+      })
+
       const response = await fetch("/api/pix", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -140,9 +150,10 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
 
       const data = await response.json()
 
-      console.log("[v0] PIX API response:", data)
+      console.log("[v0] PIX API response status:", response.status, "data:", JSON.stringify(data))
 
       if (!response.ok) {
+        console.log("[v0] PIX API error details:", data)
         throw new Error(data.error || "Erro ao gerar PIX")
       }
 
@@ -179,10 +190,10 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
   }
 
   return (
-    <div className="safari-drawer-overlay z-[70] flex items-center justify-center p-4">
-      <div className="absolute inset-0 bg-black/60 animate-in fade-in duration-300" onClick={onClose} />
+    <div className="fixed inset-0 z-[70] flex items-center justify-center p-4" style={{ minHeight: '100dvh' }}>
+      <div className="fixed inset-0 z-[70] bg-black/60 animate-in fade-in duration-300" onClick={onClose} />
       
-      <div className="relative bg-card rounded-2xl w-full max-w-md overflow-hidden shadow-2xl animate-in zoom-in-95 slide-in-from-bottom-4 duration-300 max-h-[90dvh] max-h-[90svh] overflow-y-auto safari-scroll">
+      <div className="relative z-[71] bg-card rounded-2xl w-full max-w-md overflow-hidden shadow-2xl animate-in zoom-in-95 slide-in-from-bottom-4 duration-300 max-h-[90dvh] max-h-[90svh] overflow-y-auto safari-scroll">
         {/* Header */}
         <div className="bg-primary p-5 text-primary-foreground">
           <button
