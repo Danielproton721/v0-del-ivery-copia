@@ -193,7 +193,7 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
           </div>
 
           {items.length > 0 && (
-            <div className="flex-shrink-0 border-t border-border p-4 space-y-4 bg-card">
+            <div className="flex-shrink-0 border-t border-border p-4 pb-[calc(1rem+env(safe-area-inset-bottom))] space-y-4 bg-card">
               <div className="flex items-center justify-between">
                 <span className="text-muted-foreground">Subtotal</span>
                 <span className="font-medium text-foreground">
