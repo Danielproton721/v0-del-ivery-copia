@@ -40,6 +40,11 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
     setShowUpsellComida(false)
   }
 
+  const handleUpsellSkip = () => {
+    setShowUpsellComida(false)
+    setShowPixCheckout(true)
+  }
+
   const handlePaymentSuccess = () => {
     clearCart()
     onClose()
@@ -258,6 +263,7 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
         <UpsellComida
           onClose={handleUpsellClose}
           onContinue={handleUpsellClose}
+          onSkip={handleUpsellSkip}
         />
       )}
 

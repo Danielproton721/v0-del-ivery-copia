@@ -46,9 +46,10 @@ function shuffleArray<T>(array: T[]): T[] {
 interface UpsellComidaProps {
   onClose: () => void
   onContinue: () => void
+  onSkip?: () => void
 }
 
-export function UpsellComida({ onClose, onContinue }: UpsellComidaProps) {
+export function UpsellComida({ onClose, onContinue, onSkip }: UpsellComidaProps) {
   const { addItem } = useCart()
   const [addedIds, setAddedIds] = useState<Set<string>>(new Set())
   const [isClosing, setIsClosing] = useState(false)
@@ -78,6 +79,11 @@ export function UpsellComida({ onClose, onContinue }: UpsellComidaProps) {
   const handleContinue = () => {
     setIsClosing(true)
     setTimeout(() => onContinue(), 400)
+  }
+
+  const handleSkip = () => {
+    setIsClosing(true)
+    setTimeout(() => (onSkip ? onSkip() : onContinue()), 400)
   }
 
   const addedCount = addedIds.size
@@ -181,12 +187,12 @@ export function UpsellComida({ onClose, onContinue }: UpsellComidaProps) {
               <ShoppingBag className="w-5 h-5" />
               {addedCount > 0
                 ? `Continuar com ${addedCount} ${addedCount === 1 ? "item" : "itens"} adicionado${addedCount === 1 ? "" : "s"}`
-                : "Pagar com PIX"}
+                : "Finalizar compra"}
               <ArrowRight className="w-4 h-4 ml-1" />
             </Button>
             {addedCount === 0 && (
               <button
-                onClick={handleContinue}
+                onClick={handleSkip}
                 className="w-full text-center text-sm text-muted-foreground hover:text-foreground transition-colors py-1"
               >
                 Nao quero, obrigado
