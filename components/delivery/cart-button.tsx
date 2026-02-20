@@ -6,9 +6,10 @@ import { useEffect, useState, useRef } from "react"
 
 interface CartButtonProps {
   onClick: () => void
+  isCartOpen?: boolean
 }
 
-export function CartButton({ onClick }: CartButtonProps) {
+export function CartButton({ onClick, isCartOpen = false }: CartButtonProps) {
   const { totalItems, totalPrice } = useCart()
   const [isAnimating, setIsAnimating] = useState(false)
   const [isHidden, setIsHidden] = useState(false)
@@ -39,7 +40,7 @@ export function CartButton({ onClick }: CartButtonProps) {
     return () => observer.disconnect()
   }, [])
 
-  if (totalItems === 0) return null
+  if (totalItems === 0 || isCartOpen) return null
 
   return (
     <button
