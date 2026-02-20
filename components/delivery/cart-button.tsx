@@ -43,14 +43,22 @@ export function CartButton({ onClick, isCartOpen = false }: CartButtonProps) {
   if (totalItems === 0 || isCartOpen) return null
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 pointer-events-none" style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}>
+    <div
+      className="fixed bottom-0 left-0 right-0 z-50 pointer-events-none"
+      style={{
+        paddingBottom: 'env(safe-area-inset-bottom)',
+        transform: 'translate3d(0,0,0)',
+        WebkitTransform: 'translate3d(0,0,0)',
+        willChange: 'transform',
+      }}
+    >
     <button
       onClick={onClick}
       className={`pointer-events-auto mx-4 mb-4 max-w-lg bg-primary text-primary-foreground rounded-xl py-4 px-6 flex items-center justify-between shadow-lg w-[calc(100%-2rem)]
-        hover:bg-primary/90 hover:shadow-2xl hover:scale-[1.02] hover:-translate-y-1
+        hover:bg-primary/90 hover:shadow-2xl
         active:scale-[0.98] active:shadow-lg
-        transition-all duration-300 ease-out
-        ${isHidden ? "translate-y-24 opacity-0 pointer-events-none" : "translate-y-0 opacity-100"}
+        transition-opacity duration-300 ease-out
+        ${isHidden ? "opacity-0 pointer-events-none" : "opacity-100"}
         ${isAnimating ? "animate-bounce" : ""}`}
     >
       <div className="flex items-center gap-3">
