@@ -11,7 +11,7 @@ export const products: Product[] = [
     image: "https://cdn.shopify.com/s/files/1/0800/7050/8802/files/cerveja_corona_2_1.jpg?v=1769486848",
     category: "ofertas",
     badge: "PROMO",
-    stock: 50,
+    stock: 23,
     includes: ["6 garrafas de 330ml"],
     accompaniments: ["Limao"]
   },
@@ -23,7 +23,7 @@ export const products: Product[] = [
     image: "https://cdn.shopify.com/s/files/1/0800/7050/8802/files/a4f48483bbab465a4304ef1886d372ef.jpg?v=1769488484",
     category: "ofertas",
     badge: "PACK 6UN",
-    stock: 50,
+    stock: 37,
     includes: ["6 garrafas de 313ml"],
     accompaniments: []
   },
@@ -36,7 +36,7 @@ export const products: Product[] = [
     image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/jack-daniels-apple-1000-ml_1_650.webp?v=1771911129",
     category: "ofertas",
     badge: "PROMO",
-    stock: 50,
+    stock: 15,
     includes: ["1 garrafa de 1L"],
     accompaniments: ["Gelo"]
   },
@@ -49,7 +49,7 @@ export const products: Product[] = [
     image: "https://cdn.shopify.com/s/files/1/0800/7050/8802/files/imgi_1_image_3.jpg?v=1769488266",
     category: "ofertas",
     badge: "PROMO",
-    stock: 50,
+    stock: 42,
     includes: ["1 lata de 350ml"],
     accompaniments: []
   },
@@ -62,7 +62,7 @@ export const products: Product[] = [
     image: "https://cdn.shopify.com/s/files/1/0800/7050/8802/files/imgi_1_image_2.jpg?v=1769487731",
     category: "ofertas",
     badge: "PROMO",
-    stock: 50,
+    stock: 18,
     includes: ["1 lata de 550ml"],
     accompaniments: []
   },
@@ -75,7 +75,7 @@ export const products: Product[] = [
     image: "https://cdn.shopify.com/s/files/1/0800/7050/8802/files/imgi_1_image.jpg?v=1769487611",
     category: "ofertas",
     badge: "PROMO",
-    stock: 50,
+    stock: 31,
     includes: ["1 lata de 350ml"],
     accompaniments: []
   },
@@ -88,7 +88,7 @@ export const products: Product[] = [
     image: "https://cdn.shopify.com/s/files/1/0800/7050/8802/files/Imagem10_6a8b2fe1-e2f2-4a51-b38f-7d74c52e4409.png?v=1769486965",
     category: "ofertas",
     badge: "PROMO",
-    stock: 50,
+    stock: 27,
     includes: ["1 lata de 473ml"],
     accompaniments: []
   },
@@ -101,7 +101,7 @@ export const products: Product[] = [
     image: "https://cdn.shopify.com/s/files/1/0800/7050/8802/files/Imagem2_2dec00d2-02d8-4491-81b4-c9984891e735.png?v=1769486961",
     category: "ofertas",
     badge: "PROMO",
-    stock: 50,
+    stock: 44,
     includes: ["1 lata de 473ml"],
     accompaniments: []
   },
@@ -114,7 +114,7 @@ export const products: Product[] = [
     image: "https://cdn.shopify.com/s/files/1/0800/7050/8802/files/Imagem30_e34272cf-8fa3-44d9-a034-ebf962b4a4fc.png?v=1769486952",
     category: "ofertas",
     badge: "PROMO",
-    stock: 50,
+    stock: 12,
     includes: ["1 lata de 473ml"],
     accompaniments: []
   },
@@ -127,7 +127,7 @@ export const products: Product[] = [
     image: "https://cdn.shopify.com/s/files/1/0800/7050/8802/files/Imagem13_b38c8601-04cc-4b51-aa4e-be8aa6dba3fa.jpg?v=1769486878",
     category: "ofertas",
     badge: "PROMO",
-    stock: 50,
+    stock: 35,
     includes: ["1 lata de 473ml"],
     accompaniments: []
   },
@@ -140,7 +140,7 @@ export const products: Product[] = [
     image: "https://cdn.shopify.com/s/files/1/0800/7050/8802/files/budw.jpg?v=1769486864",
     category: "ofertas",
     badge: "PROMO",
-    stock: 50,
+    stock: 19,
     includes: ["1 lata de 473ml"],
     accompaniments: []
   },
@@ -153,7 +153,7 @@ export const products: Product[] = [
     image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/vodka-ciroc_1_650.webp?v=1771912716",
     category: "ofertas",
     badge: "PROMO",
-    stock: 50,
+    stock: 11,
     includes: ["1 garrafa de 750ml"],
     accompaniments: ["Gelo"]
   },
@@ -166,7 +166,7 @@ export const products: Product[] = [
     image: "https://cdn.shopify.com/s/files/1/0800/7050/8802/files/352bc8bb94367ea49ebf312bf24bf842.jpg?v=1769488562",
     category: "ofertas",
     badge: "PACK 4UN",
-    stock: 50,
+    stock: 28,
     includes: ["4 latas de 250ml"],
     accompaniments: []
   },
@@ -178,7 +178,7 @@ export const products: Product[] = [
     originalPrice: 5.79,
     image: "https://cdn.shopify.com/s/files/1/0800/7050/8802/files/178.jpg?v=1769486884",
     category: "ofertas",
-    stock: 50,
+    stock: 46,
     minQuantity: 6,
     includes: ["1 garrafa de 330ml"],
     accompaniments: []
@@ -191,7 +191,7 @@ export const products: Product[] = [
     originalPrice: 5.79,
     image: "https://cdn.shopify.com/s/files/1/0800/7050/8802/files/amstel_1fe3b8f0-2cb6-44e5-8f8e-7ea7b3835e70.jpg?v=1769489135",
     category: "ofertas",
-    stock: 50,
+    stock: 33,
     minQuantity: 12,
     includes: ["1 lata de 473ml"],
     accompaniments: []
@@ -204,7 +204,7 @@ export const products: Product[] = [
     image: "https://cdn.shopify.com/s/files/1/0800/7050/8802/files/91064246b383f2d443f79f23bf15ce02.webp?v=1769488518",
     category: "ofertas",
     badge: "PACK 6UN",
-    stock: 50,
+    stock: 21,
     includes: ["6 garrafas de 210ml"],
     accompaniments: ["Limao"]
   },
@@ -216,7 +216,7 @@ export const products: Product[] = [
     image: "https://cdn.shopify.com/s/files/1/0800/7050/8802/files/a4f48483bbab465a4304ef1886d372ef.jpg?v=1769488484",
     category: "ofertas",
     badge: "PACK 6UN",
-    stock: 50,
+    stock: 39,
     includes: ["6 garrafas de 313ml"],
     accompaniments: []
   },
@@ -228,7 +228,7 @@ export const products: Product[] = [
     originalPrice: 4.09,
     image: "https://cdn.shopify.com/s/files/1/0800/7050/8802/files/imgi_1_image_3.jpg?v=1769488266",
     category: "ofertas",
-    stock: 50,
+    stock: 47,
     minQuantity: 6,
     includes: ["1 lata de 350ml"],
     accompaniments: []
@@ -242,7 +242,7 @@ export const products: Product[] = [
     image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/00025903_e7850685-8628-43a0-adb8-803f3aa13fd9.webp?v=1771966570",
     category: "ofertas",
     badge: "PROMO",
-    stock: 50,
+    stock: 14,
     includes: ["120g"],
     accompaniments: []
   },
@@ -254,7 +254,7 @@ export const products: Product[] = [
     image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/00026001_16f5bdd1-dcf3-4257-a6f6-d9bc45760972.webp?v=1771967202",
     category: "ofertas",
     badge: "PROMO",
-    stock: 50,
+    stock: 48,
     includes: ["60g"],
     accompaniments: []
   },
@@ -266,7 +266,7 @@ export const products: Product[] = [
     image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/00025992_727e2966-9092-4688-98fa-6d08ecd12bc4.webp?v=1771967171",
     category: "ofertas",
     badge: "PROMO",
-    stock: 50,
+    stock: 26,
     includes: ["70g"],
     accompaniments: []
   },
@@ -279,7 +279,7 @@ export const products: Product[] = [
     image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/00008982_17ef7153-3f43-40da-a03f-f70cf243815f.webp?v=1771967879",
     category: "ofertas",
     badge: "PROMO",
-    stock: 50,
+    stock: 17,
     includes: ["2kg"],
     accompaniments: []
   },
