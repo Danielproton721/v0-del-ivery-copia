@@ -1,7 +1,6 @@
 "use client"
 
 import React from "react"
-import { TrackPurchase } from "./track-purchase"
 import { savePendingOrder, removePendingOrder } from "./pending-orders"
 
 import { useState, useEffect, useRef, useCallback } from "react"
@@ -12,6 +11,8 @@ import Image from "next/image"
 declare global {
   interface Window {
     dataLayer?: Record<string, unknown>[]
+    fbq?: (...args: unknown[]) => void
+    gtag?: (...args: unknown[]) => void
   }
 }
 
@@ -196,20 +197,48 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
       removePendingOrder(pixData.transactionId)
     }
 
-    // Dispara evento no dataLayer (apenas uma vez)
+    // Dispara todos os eventos de conversao APENAS apos confirmacao do gateway
     if (typeof window !== "undefined") {
+      const transactionId = pixData?.transactionId || ""
+
+      // 1. dataLayer - Google Tag Manager
       window.dataLayer = window.dataLayer || []
       window.dataLayer.push({
         event: "compra_aprovada",
-        transaction_id: pixData?.transactionId || "",
+        transaction_id: transactionId,
         value: amount,
         currency: "BRL",
       })
+
+      // 2. Google Ads - Evento de Conversao
+      if (window.gtag) {
+        window.gtag("event", "conversion", {
+          send_to: "AW-17934359668/b5kPCJ_O3_gbEPS44udC",
+          value: amount,
+          currency: "BRL",
+          transaction_id: transactionId,
+        })
+      }
+
+      // 3. Facebook Pixel - Evento de Purchase
+      if (window.fbq) {
+        window.fbq("track", "Purchase", {
+          value: amount,
+          currency: "BRL",
+          content_type: "product",
+          contents: items.map((item, index) => ({
+            id: `product_${index}`,
+            quantity: item.quantity,
+            item_price: item.price,
+          })),
+          num_items: items.reduce((acc, item) => acc + item.quantity, 0),
+        })
+      }
     }
 
     // Mostrar tela de sucesso
     setStep("success")
-  }, [pixData, amount])
+  }, [pixData, amount, items])
 
   useEffect(() => {
     if (step !== "qrcode" || !pixData?.transactionId) return
@@ -472,13 +501,6 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
 
           {step === "qrcode" && pixData && (
             <div className="space-y-6">
-              {/* TRACKING - Dispara quando o PIX e gerado (pendente) */}
-              <TrackPurchase 
-                transactionId={pixData.transactionId || ""} 
-                amount={amount} 
-                items={items} 
-              />
-
               <div className="text-center">
                 <p className="text-sm text-muted-foreground mb-4">
                   Escaneie o QR Code ou copie o codigo PIX
