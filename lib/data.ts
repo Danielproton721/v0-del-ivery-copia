@@ -1181,6 +1181,36 @@ export const products: Product[] = [
     includes: ["1 unidade"],
     accompaniments: []
   },
+  {
+    id: "300",
+    name: "Agua Mineral Sem Gas Crystal 500ml Kit com 12 Un",
+    description: "Agua cuidadosamente purificada e de alta qualidade. Pratica garrafa de 500ml, ideal para acompanhar refeicoes, treinos ou momentos de lazer. Kit com 12 unidades.",
+    price: 42.90,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/81NZnsXVlIL._AC_SL1500.jpg?v=1771912994",
+    category: "poke",
+    includes: ["12 unidades"],
+    accompaniments: []
+  },
+  {
+    id: "301",
+    name: "Agua com Gas 500ml Kit com 12 Un",
+    description: "Agua Crystal com Gas, leve e natural para quem busca hidratacao de qualidade. Bolhas leves que trazem sensacao de frescor imediato. Kit com 12 unidades.",
+    price: 42.90,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/71Z-VlKmPZL._AC_SL1500.jpg?v=1771912998",
+    category: "poke",
+    includes: ["12 unidades"],
+    accompaniments: []
+  },
+  {
+    id: "302",
+    name: "Agua Mineral Sem Gas 1,5L Pack com 6 Un Crystal",
+    description: "Agua mineral sem gas Crystal em embalagem de 1,5L. Pack com 6 unidades, perfeita para o dia a dia e para toda a familia.",
+    price: 24.00,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/996948d.jpg?v=1771913051",
+    category: "poke",
+    includes: ["6 unidades"],
+    accompaniments: []
+  },
 
   // COMIDA
   {
