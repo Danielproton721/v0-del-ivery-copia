@@ -15,6 +15,7 @@ import { CartDrawer } from "@/components/delivery/cart-drawer"
 import { ProductDetail } from "@/components/delivery/product-detail"
 import { LocationPopup } from "@/components/delivery/location-popup"
 import { HighlightProducts } from "@/components/delivery/category-showcase"
+import { PromoTimer } from "@/components/delivery/promo-timer"
 import { AboutUs } from "@/components/delivery/about-us"
 import { Footer } from "@/components/delivery/footer"
 import { BannerCarousel } from "@/components/delivery/banner-carousel"
@@ -91,9 +92,12 @@ function DeliveryApp() {
         {activeCategory === "ofertas" ? (
           <>
             <section className="mb-8">
-              <h2 className="text-lg font-bold text-foreground mb-4">
-                Ofertas do Dia
-              </h2>
+              <div className="flex items-center gap-3 mb-4">
+                <h2 className="text-lg font-bold text-foreground">
+                  Ofertas do Dia
+                </h2>
+                <PromoTimer />
+              </div>
               <div className="flex gap-3 overflow-x-auto pb-2 -mx-4 px-4 scrollbar-hide snap-x snap-mandatory">
                 {featuredProducts.map((product, index) => (
                   <div key={product.id} className="flex-shrink-0 w-[42vw] max-w-[180px] snap-start">

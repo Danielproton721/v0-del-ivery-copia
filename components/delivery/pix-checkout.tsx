@@ -1,13 +1,20 @@
 "use client"
 
 import React from "react"
-import { TrackPurchase } from "./track-purchase"
 import { savePendingOrder, removePendingOrder } from "./pending-orders"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef, useCallback } from "react"
 import { X, Copy, Check, Loader2, QrCode, AlertCircle, MapPin } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
+
+declare global {
+  interface Window {
+    dataLayer?: Record<string, unknown>[]
+    fbq?: (...args: unknown[]) => void
+    gtag?: (...args: unknown[]) => void
+  }
+}
 
 interface PixCheckoutProps {
   amount: number
@@ -33,7 +40,6 @@ interface AddressData {
 }
 
 export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutProps) {
-  console.log("[v0] PixCheckout RENDERED - amount:", amount, "items:", items.length)
   const [step, setStep] = useState<"form" | "address" | "loading" | "qrcode" | "success" | "error">("form")
   const [customerData, setCustomerData] = useState<CustomerData>({
     name: "",
@@ -126,15 +132,6 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
     setError("")
 
     try {
-      console.log("[v0] Sending PIX request with data:", {
-        amount,
-        customerName: customerData.name,
-        customerEmail: customerData.email,
-        customerDocument: customerData.document,
-        customerPhone: customerData.phone,
-        itemsCount: items.length,
-      })
-
       const response = await fetch("/api/pix", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -150,10 +147,7 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
 
       const data = await response.json()
 
-      console.log("[v0] PIX API response status:", response.status, "data:", JSON.stringify(data))
-
       if (!response.ok) {
-        console.log("[v0] PIX API error details:", data)
         throw new Error(data.error || "Erro ao gerar PIX")
       }
 
@@ -188,6 +182,83 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
       setTimeout(() => setCopied(false), 2000)
     }
   }
+
+  // ============================================
+  // POLLING - Verificacao automatica de pagamento
+  // ============================================
+  const hasDispatchedEvent = useRef(false)
+
+  const handlePaymentConfirmed = useCallback(() => {
+    if (hasDispatchedEvent.current) return
+    hasDispatchedEvent.current = true
+
+    // Remove pedido pendente
+    if (pixData?.transactionId) {
+      removePendingOrder(pixData.transactionId)
+    }
+
+    // Dispara todos os eventos de conversao APENAS apos confirmacao do gateway
+    if (typeof window !== "undefined") {
+      const transactionId = pixData?.transactionId || ""
+
+      // 1. dataLayer - Google Tag Manager
+      window.dataLayer = window.dataLayer || []
+      window.dataLayer.push({
+        event: "compra_aprovada",
+        transaction_id: transactionId,
+        value: amount,
+        currency: "BRL",
+      })
+
+      // 2. Google Ads - Evento de Conversao
+      if (window.gtag) {
+        window.gtag("event", "conversion", {
+          send_to: "AW-17934359668/b5kPCJ_O3_gbEPS44udC",
+          value: amount,
+          currency: "BRL",
+          transaction_id: transactionId,
+        })
+      }
+
+      // 3. Facebook Pixel - Evento de Purchase
+      if (window.fbq) {
+        window.fbq("track", "Purchase", {
+          value: amount,
+          currency: "BRL",
+          content_type: "product",
+          contents: items.map((item, index) => ({
+            id: `product_${index}`,
+            quantity: item.quantity,
+            item_price: item.price,
+          })),
+          num_items: items.reduce((acc, item) => acc + item.quantity, 0),
+        })
+      }
+    }
+
+    // Mostrar tela de sucesso
+    setStep("success")
+  }, [pixData, amount, items])
+
+  useEffect(() => {
+    if (step !== "qrcode" || !pixData?.transactionId) return
+
+    const intervalId = setInterval(async () => {
+      try {
+        const response = await fetch(`/api/verificar-status?pedido_id=${pixData.transactionId}`)
+        const data = await response.json()
+
+        if (data.status === "Pago") {
+          clearInterval(intervalId)
+          handlePaymentConfirmed()
+        }
+      } catch (err) {
+        console.error("[v0] Polling error:", err)
+      }
+    }, 5000) // Verifica a cada 5 segundos
+
+    return () => clearInterval(intervalId)
+  }, [step, pixData?.transactionId, handlePaymentConfirmed])
 
   return (
     <div className="fixed inset-0 z-[70] flex items-center justify-center p-4" style={{ minHeight: '100dvh' }}>
@@ -430,13 +501,6 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
 
           {step === "qrcode" && pixData && (
             <div className="space-y-6">
-              {/* TRACKING - Dispara quando o PIX e gerado (pendente) */}
-              <TrackPurchase 
-                transactionId={pixData.transactionId || ""} 
-                amount={amount} 
-                items={items} 
-              />
-
               <div className="text-center">
                 <p className="text-sm text-muted-foreground mb-4">
                   Escaneie o QR Code ou copie o codigo PIX
@@ -498,18 +562,11 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
                 </ol>
               </div>
 
-              <Button
-                onClick={() => {
-                  // Remove pedido pendente ao confirmar pagamento
-                  if (pixData?.transactionId) {
-                    removePendingOrder(pixData.transactionId)
-                  }
-                  setStep("success")
-                }}
-                className="w-full py-6 bg-primary text-primary-foreground hover:bg-primary/90 text-base font-semibold"
-              >
-                Ja fiz o pagamento
-              </Button>
+              {/* Verificacao automatica de pagamento */}
+              <div className="flex items-center justify-center gap-2 py-3 text-sm text-muted-foreground">
+                <Loader2 className="w-4 h-4 animate-spin text-primary" />
+                <span>Aguardando confirmacao do pagamento...</span>
+              </div>
             </div>
           )}
 
@@ -518,17 +575,14 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
               <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
                 <Check className="w-10 h-10 text-primary" />
               </div>
-              <h3 className="text-xl font-bold text-foreground">Obrigado!</h3>
+              <h3 className="text-xl font-bold text-foreground">Pagamento Confirmado!</h3>
               <p className="text-muted-foreground">
-                Seu pedido esta sendo preparado.
-              </p>
-              <p className="text-sm text-muted-foreground">
-                Assim que confirmarmos o pagamento, liberamos a entrega.
+                Seu pedido esta sendo preparado e logo saira para entrega.
               </p>
               
               <div className="bg-secondary/50 rounded-xl p-4 mt-6">
                 <p className="text-sm text-muted-foreground">
-                  Voce recebera uma notificacao assim que o pagamento for confirmado.
+                  Obrigado pela sua compra! Voce recebera atualizacoes sobre o status da entrega.
                 </p>
               </div>
 

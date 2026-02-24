@@ -5,7 +5,7 @@ import { products } from "@/lib/data"
 import { useCart } from "@/lib/cart-context"
 import { ShoppingBag } from "lucide-react"
 
-const HIGHLIGHT_IDS = ["40", "41"] // Tanqueray Gin 750ml, Whisky Jack Daniel's 1L
+const HIGHLIGHT_IDS = ["40", "313", "41"] // Tanqueray Gin 750ml, Vodka Ciroc 750ml, Whisky Jack Daniel's 1L
 
 interface HighlightProductsProps {
   onProductSelect: (product: (typeof products)[0]) => void
@@ -19,7 +19,7 @@ export function HighlightProducts({ onProductSelect }: HighlightProductsProps) {
 
   return (
     <section className="mb-8">
-      <div className="flex gap-3">
+      <div className="flex gap-3 overflow-x-auto scrollbar-hide -mx-4 px-4 snap-x snap-mandatory pb-2">
         {highlightProducts.map((product, index) => {
           const discount = product.originalPrice
             ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
@@ -29,7 +29,7 @@ export function HighlightProducts({ onProductSelect }: HighlightProductsProps) {
             <div
               key={product.id}
               onClick={() => onProductSelect(product)}
-              className="flex-1 bg-card rounded-xl overflow-hidden border border-border shadow-sm cursor-pointer
+              className="flex-shrink-0 w-[42vw] max-w-[180px] snap-start bg-card rounded-xl overflow-hidden border border-border shadow-sm cursor-pointer
                 hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all duration-300
                 animate-in fade-in slide-in-from-bottom-4 fill-mode-both"
               style={{ animationDelay: `${index * 100}ms` }}

@@ -1,7 +1,6 @@
 "use client"
 
 import { Star, Clock, Truck, CreditCard, MapPin, ChevronDown } from "lucide-react"
-import { useState, useEffect } from "react"
 import Image from "next/image"
 
 interface StoreHeaderProps {
@@ -10,21 +9,7 @@ interface StoreHeaderProps {
 }
 
 export function StoreHeader({ userAddress, onChangeAddress }: StoreHeaderProps) {
-  const [timeLeft, setTimeLeft] = useState({ minutes: 30, seconds: 0 })
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft((prev) => {
-        if (prev.seconds > 0) {
-          return { ...prev, seconds: prev.seconds - 1 }
-        } else if (prev.minutes > 0) {
-          return { minutes: prev.minutes - 1, seconds: 59 }
-        }
-        return { minutes: 30, seconds: 0 }
-      })
-    }, 1000)
-    return () => clearInterval(timer)
-  }, [])
+  
 
   // Extrai cidade do endereco
   const getCityFromAddress = (address: string) => {
@@ -131,23 +116,7 @@ export function StoreHeader({ userAddress, onChangeAddress }: StoreHeaderProps) 
           </button>
         )}
 
-        {/* Timer de Promoção */}
-        <div className="mt-3 bg-accent text-accent-foreground rounded-xl px-4 py-3 flex items-center justify-center gap-3 
-          animate-in fade-in slide-in-from-bottom-4 duration-500 delay-200 fill-mode-both
-          hover:shadow-lg hover:scale-[1.01] transition-all duration-300">
-          <span className="font-medium text-sm animate-pulse">Promoção acaba em:</span>
-          <div className="flex items-center gap-1 font-mono font-bold text-lg">
-            <span className="bg-card text-foreground px-2 py-1 rounded shadow-sm">00</span>
-            <span className="animate-pulse">:</span>
-            <span className="bg-card text-foreground px-2 py-1 rounded shadow-sm transition-all duration-300">
-              {String(timeLeft.minutes).padStart(2, "0")}
-            </span>
-            <span className="animate-pulse">:</span>
-            <span className={`bg-card text-foreground px-2 py-1 rounded shadow-sm transition-all duration-150 ${timeLeft.seconds <= 10 ? "text-accent scale-110" : ""}`}>
-              {String(timeLeft.seconds).padStart(2, "0")}
-            </span>
-          </div>
-        </div>
+
 
         {/* Info discreta */}
         <div className="mt-3 flex items-center justify-center gap-4 text-xs text-muted-foreground
