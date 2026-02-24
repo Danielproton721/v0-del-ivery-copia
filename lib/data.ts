@@ -129,6 +129,55 @@ export const products: Product[] = [
     includes: ["1 lata de 350ml"],
     accompaniments: []
   },
+  {
+    id: "5",
+    name: "Doritos Queijo Nacho 120g",
+    description: "Salgadinho Doritos sabor Queijo Nacho 120g.",
+    price: 15.89,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/00025903_e7850685-8628-43a0-adb8-803f3aa13fd9.webp?v=1771966570",
+    category: "ofertas",
+    badge: "PROMO",
+    stock: 50,
+    includes: ["120g"],
+    accompaniments: []
+  },
+  {
+    id: "6",
+    name: "Torcida Churrasco 60g",
+    description: "Salgadinho Torcida sabor Churrasco 60g.",
+    price: 2.49,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/00026001_16f5bdd1-dcf3-4257-a6f6-d9bc45760972.webp?v=1771967202",
+    category: "ofertas",
+    badge: "PROMO",
+    stock: 50,
+    includes: ["60g"],
+    accompaniments: []
+  },
+  {
+    id: "7",
+    name: "Lays Classica 70g",
+    description: "Batata Lays sabor Classico 70g.",
+    price: 10.29,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/00025992_727e2966-9092-4688-98fa-6d08ecd12bc4.webp?v=1771967171",
+    category: "ofertas",
+    badge: "PROMO",
+    stock: 50,
+    includes: ["70g"],
+    accompaniments: []
+  },
+  {
+    id: "8",
+    name: "Carvao 2kg",
+    description: "Carvao para churrasco 2kg.",
+    price: 18.32,
+    originalPrice: 20.32,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/00008982_17ef7153-3f43-40da-a03f-f70cf243815f.webp?v=1771967879",
+    category: "ofertas",
+    badge: "PROMO",
+    stock: 50,
+    includes: ["2kg"],
+    accompaniments: []
+  },
 
   // CERVEJAS (cervejas)
   {
