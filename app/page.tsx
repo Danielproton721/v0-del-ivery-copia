@@ -96,7 +96,7 @@ function DeliveryApp() {
               </h2>
               <div className="flex gap-3 overflow-x-auto pb-2 -mx-4 px-4 scrollbar-hide snap-x snap-mandatory">
                 {featuredProducts.map((product, index) => (
-                  <div key={product.id} className="flex-shrink-0 w-[160px] snap-start">
+                  <div key={product.id} className="flex-shrink-0 w-[42vw] max-w-[180px] snap-start">
                     <FeaturedProductCard
                       product={product}
                       index={index}
