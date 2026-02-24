@@ -57,8 +57,7 @@ export function FeaturedProductCard({ product, onClick, index = 0 }: FeaturedPro
       </div>
       <div className="p-4">
         <h3 className="font-semibold text-foreground line-clamp-2">{product.name}</h3>
-        <p className="text-sm text-muted-foreground mt-1 line-clamp-2">{product.description}</p>
-        <div className="mt-3 flex items-baseline gap-2">
+        <div className="mt-2 flex items-baseline gap-2">
           {product.originalPrice && (
             <span className="text-sm text-muted-foreground line-through">
               R$ {product.originalPrice.toFixed(2).replace(".", ",")}
