@@ -45,6 +45,15 @@ export function FeaturedProductCard({ product, onClick, index = 0 }: FeaturedPro
             {product.badge}
           </Badge>
         )}
+        {/* Botao adicionar ao carrinho */}
+        <button
+          onClick={handleAddToCart}
+          className="absolute top-2 right-2 w-9 h-9 bg-accent rounded-full flex items-center justify-center shadow-lg
+            hover:scale-110 hover:shadow-xl active:scale-95
+            transition-all duration-200 z-10"
+        >
+          <ShoppingBag className="w-4 h-4 text-accent-foreground" />
+        </button>
       </div>
       <div className="p-4">
         <h3 className="font-semibold text-foreground line-clamp-2">{product.name}</h3>
@@ -66,15 +75,6 @@ export function FeaturedProductCard({ product, onClick, index = 0 }: FeaturedPro
         )}
       </div>
       
-      {/* Botao adicionar ao carrinho */}
-      <button
-        onClick={handleAddToCart}
-        className="absolute bottom-4 right-4 w-10 h-10 bg-accent rounded-full flex items-center justify-center shadow-lg
-          hover:scale-110 hover:shadow-xl active:scale-95
-          transition-all duration-200 z-10"
-      >
-        <ShoppingBag className="w-5 h-5 text-accent-foreground" />
-      </button>
     </div>
   )
 }
