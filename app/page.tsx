@@ -118,6 +118,23 @@ function DeliveryApp() {
               </div>
             </section>
 
+            <section className="mb-8">
+              <h2 className="text-lg font-bold text-foreground mb-4">
+                Salgadinhos
+              </h2>
+              <div className="flex gap-3 overflow-x-auto pb-2 -mx-4 px-4 scrollbar-hide snap-x snap-mandatory">
+                {products.filter((p) => p.category === "salgadinho").map((product, index) => (
+                  <div key={product.id} className="flex-shrink-0 w-[42vw] max-w-[180px] snap-start">
+                    <FeaturedProductCard
+                      product={product}
+                      index={index}
+                      onClick={() => setSelectedProduct(product)}
+                    />
+                  </div>
+                ))}
+              </div>
+            </section>
+
             {otherCategories.map((category, catIndex) => {
               const categoryProducts = products.filter(
                 (p) => p.category === category.id
