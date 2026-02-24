@@ -30,7 +30,7 @@ export function BannerCarousel({ onBannerClick }: BannerCarouselProps) {
   }, [])
 
   useEffect(() => {
-    const interval = setInterval(next, 4000)
+    const interval = setInterval(next, 5000)
     return () => clearInterval(interval)
   }, [next])
 
