@@ -118,23 +118,6 @@ function DeliveryApp() {
               </div>
             </section>
 
-            <section className="mb-8">
-              <h2 className="text-lg font-bold text-foreground mb-4">
-                Salgadinhos
-              </h2>
-              <div className="flex gap-3 overflow-x-auto pb-2 -mx-4 px-4 scrollbar-hide snap-x snap-mandatory">
-                {products.filter((p) => p.category === "salgadinho").map((product, index) => (
-                  <div key={product.id} className="flex-shrink-0 w-[42vw] max-w-[180px] snap-start">
-                    <FeaturedProductCard
-                      product={product}
-                      index={index}
-                      onClick={() => setSelectedProduct(product)}
-                    />
-                  </div>
-                ))}
-              </div>
-            </section>
-
             {otherCategories.map((category, catIndex) => {
               const categoryProducts = products.filter(
                 (p) => p.category === category.id
@@ -144,6 +127,8 @@ function DeliveryApp() {
               // Insere os produtos destaque entre Cervejas (index 0) e Destilados (index 1)
               const showHighlightProducts = catIndex === 1
               
+              const isHorizontal = category.id === "salgadinho"
+
               return (
                 <div key={category.id}>
                   {showHighlightProducts && (
@@ -153,16 +138,30 @@ function DeliveryApp() {
                     <h2 className="text-lg font-bold text-foreground mb-4">
                       {category.name}
                     </h2>
-                    <div className="space-y-3">
-                      {categoryProducts.map((product, index) => (
-                        <CompactProductCard
-                          key={product.id}
-                          product={product}
-                          index={index}
-                          onClick={() => setSelectedProduct(product)}
-                        />
-                      ))}
-                    </div>
+                    {isHorizontal ? (
+                      <div className="flex gap-3 overflow-x-auto pb-2 -mx-4 px-4 scrollbar-hide snap-x snap-mandatory">
+                        {categoryProducts.map((product, index) => (
+                          <div key={product.id} className="flex-shrink-0 w-[42vw] max-w-[180px] snap-start">
+                            <FeaturedProductCard
+                              product={product}
+                              index={index}
+                              onClick={() => setSelectedProduct(product)}
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <div className="space-y-3">
+                        {categoryProducts.map((product, index) => (
+                          <CompactProductCard
+                            key={product.id}
+                            product={product}
+                            index={index}
+                            onClick={() => setSelectedProduct(product)}
+                          />
+                        ))}
+                      </div>
+                    )}
                   </section>
                 </div>
               )
