@@ -20,7 +20,7 @@ export function PromoTimer() {
   }, [])
 
   return (
-    <div className="bg-accent text-accent-foreground rounded-full px-4 py-2 flex items-center gap-2 flex-1 min-w-0">
+    <div className="bg-accent text-accent-foreground rounded-full px-4 py-2 flex items-center justify-between w-full">
       <span className="text-[11px] font-semibold whitespace-nowrap">Promocao acaba em</span>
       <div className="flex items-center gap-1 font-mono font-bold shrink-0">
         <span className="bg-card text-foreground px-1.5 py-0.5 rounded text-xs">00</span>
