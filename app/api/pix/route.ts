@@ -15,10 +15,6 @@ export async function POST(request: NextRequest) {
 
     const secretKey = process.env.MEDUSAPAY_SECRET_KEY
 
-    console.log("[v0] MEDUSAPAY_SECRET_KEY exists:", !!secretKey)
-    console.log("[v0] MEDUSAPAY_SECRET_KEY length:", secretKey?.length || 0)
-    console.log("[v0] All env keys with MEDUSA:", Object.keys(process.env).filter(k => k.includes("MEDUSA")))
-
     if (!secretKey) {
       return NextResponse.json(
         { error: "Chave da API nao configurada" },
@@ -74,10 +70,7 @@ export async function POST(request: NextRequest) {
 
     const data = await response.json()
 
-    console.log("[v0] MedusaPay full response:", JSON.stringify(data, null, 2))
-
     if (!response.ok) {
-      console.error("[v0] MedusaPay error:", data)
       return NextResponse.json(
         { error: data.message || "Erro ao criar cobranca PIX" },
         { status: response.status }
@@ -93,9 +86,6 @@ export async function POST(request: NextRequest) {
       ? `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(pixCode)}`
       : ""
 
-    console.log("[v0] Extracted pixCode:", pixCode)
-    console.log("[v0] Generated pixQrCodeImage:", pixQrCodeImage)
-
     // Retornar dados do QR Code
     return NextResponse.json({
       success: true,
@@ -106,8 +96,7 @@ export async function POST(request: NextRequest) {
       amount: amount,
       rawResponse: data, // Enviar resposta completa para debug
     })
-  } catch (error) {
-    console.error("[v0] PIX creation error:", error)
+  } catch {
     return NextResponse.json(
       { error: "Erro interno do servidor" },
       { status: 500 }
