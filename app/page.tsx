@@ -118,22 +118,18 @@ function DeliveryApp() {
               </div>
             </section>
 
+            <HighlightProducts onProductSelect={(p) => setSelectedProduct(p)} onComboClick={() => setOpenCombo(true)} />
+
             {otherCategories.map((category, catIndex) => {
               const categoryProducts = products.filter(
                 (p) => p.category === category.id
               )
               if (categoryProducts.length === 0) return null
               
-              // Insere os produtos destaque entre Cervejas (index 0) e Destilados (index 1)
-              const showHighlightProducts = catIndex === 1
-              
               const isHorizontal = category.id === "salgadinho"
 
               return (
                 <div key={category.id}>
-                  {showHighlightProducts && (
-                    <HighlightProducts onProductSelect={(p) => setSelectedProduct(p)} onComboClick={() => setOpenCombo(true)} />
-                  )}
                   <section className="mb-8">
                     <h2 className="text-lg font-bold text-foreground mb-4">
                       {category.name}
