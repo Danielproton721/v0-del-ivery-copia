@@ -257,7 +257,7 @@ export function CartDrawer({ isOpen, onClose, onNavigateToCategory }: CartDrawer
                   }`}
                 >
                   <ShoppingBag className="w-5 h-5" />
-                  {canCheckout ? "Finalizar compra" : "Pedido minimo R$ 50"}
+                  {canCheckout ? "Finalizar compra" : `Pedido minimo R$ ${MIN_ORDER_VALUE}`}
                 </Button>
               </div>
             </div>

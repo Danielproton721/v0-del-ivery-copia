@@ -1143,7 +1143,7 @@ export const products: Product[] = [
     description: "O energetico original Red Bull, com cafeina, taurina e vitaminas do grupo B",
     price: 5.49,
     originalPrice: 8.74,
-    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/00009049_85ea128a-b2b4-4e41-aafc-7e0f7c4ff3e2.webp?v=1772002927",
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/61_nTaXiDLL._AC_SL1367.jpg?v=1772002641",
     category: "combinados",
     includes: ["1 lata de 250ml"],
     accompaniments: []

@@ -45,7 +45,7 @@ export function StoreHeader({ userAddress, onChangeAddress }: StoreHeaderProps) 
         <div className="flex flex-col items-center animate-in fade-in slide-in-from-top-4 duration-500">
           <div className="w-[104px] h-[104px] flex items-center justify-center overflow-hidden hover:scale-105 transition-all duration-300 cursor-pointer">
             <Image
-              src="/logo.png"
+              src="/logo.webp"
               alt="Arco Bebidas"
               width={104}
               height={104}
