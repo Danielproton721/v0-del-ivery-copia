@@ -239,6 +239,22 @@ export function PendingOrdersModal({ onClose }: { onClose: () => void }) {
               </ul>
             </div>
 
+            <Button
+              onClick={() => {
+                handleRemove(selectedOrder.transactionId)
+                onClose()
+                // Dispara evento para abrir tela de sucesso
+                window.dispatchEvent(new CustomEvent("pix-payment-confirmed", {
+                  detail: { transactionId: selectedOrder.transactionId }
+                }))
+              }}
+              className="w-full py-6 bg-primary text-primary-foreground hover:bg-primary/90 gap-2 text-base font-semibold
+                hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
+            >
+              <Check className="w-5 h-5" />
+              Ja fiz o pagamento
+            </Button>
+
             <div className="flex gap-3">
               <Button
                 onClick={() => setSelectedOrder(null)}
