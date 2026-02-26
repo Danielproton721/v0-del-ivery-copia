@@ -39,6 +39,7 @@ export async function POST(request: NextRequest) {
     }]
 
     // Criar transacao PIX na MedusaPay
+    console.log("[v0] Enviando request para MedusaPay...")
     const response = await fetch("https://api.v2.medusapay.com.br/v1/transactions", {
       method: "POST",
       headers: {
@@ -69,8 +70,11 @@ export async function POST(request: NextRequest) {
     })
 
     const data = await response.json()
+    console.log("[v0] MedusaPay response status:", response.status)
+    console.log("[v0] MedusaPay response data:", JSON.stringify(data).substring(0, 500))
 
     if (!response.ok) {
+      console.log("[v0] MedusaPay error:", data.message || data.error || JSON.stringify(data))
       return NextResponse.json(
         { error: data.message || "Erro ao criar cobranca PIX" },
         { status: response.status }
@@ -96,7 +100,8 @@ export async function POST(request: NextRequest) {
       amount: amount,
       rawResponse: data, // Enviar resposta completa para debug
     })
-  } catch {
+  } catch (err) {
+    console.log("[v0] PIX API catch error:", err instanceof Error ? err.message : err)
     return NextResponse.json(
       { error: "Erro interno do servidor" },
       { status: 500 }
