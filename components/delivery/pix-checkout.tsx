@@ -192,8 +192,12 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
     if (step !== "qrcode" || hasDispatchedPixel.current) return
     hasDispatchedPixel.current = true
 
-    if (typeof window !== "undefined") {
+    const firePixels = () => {
+      if (typeof window === "undefined") return
+
       const transactionId = pixData?.transactionId || ""
+
+      console.log("[v0] Disparando pixels - step:", step, "transactionId:", transactionId, "amount:", amount)
 
       // 1. dataLayer - Google Tag Manager
       window.dataLayer = window.dataLayer || []
@@ -203,6 +207,7 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
         value: amount,
         currency: "BRL",
       })
+      console.log("[v0] dataLayer push realizado")
 
       // 2. Google Ads - Evento de Conversao
       if (window.gtag) {
@@ -212,6 +217,23 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
           currency: "BRL",
           transaction_id: transactionId,
         })
+        console.log("[v0] gtag conversion disparado")
+      } else {
+        console.log("[v0] gtag NAO disponivel, tentando novamente em 2s...")
+        // Retry apos 2 segundos caso gtag ainda nao tenha carregado
+        setTimeout(() => {
+          if (window.gtag) {
+            window.gtag("event", "conversion", {
+              send_to: "AW-17934359668/b5kPCJ_O3_gbEPS44udC",
+              value: amount,
+              currency: "BRL",
+              transaction_id: transactionId,
+            })
+            console.log("[v0] gtag conversion disparado (retry)")
+          } else {
+            console.log("[v0] gtag ainda NAO disponivel apos retry")
+          }
+        }, 2000)
       }
 
       // 3. Facebook Pixel - Evento de Purchase
@@ -227,8 +249,14 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
           })),
           num_items: items.reduce((acc, item) => acc + item.quantity, 0),
         })
+        console.log("[v0] fbq Purchase disparado")
+      } else {
+        console.log("[v0] fbq NAO disponivel")
       }
     }
+
+    // Pequeno delay para garantir que scripts afterInteractive ja carregaram
+    setTimeout(firePixels, 500)
   }, [step, pixData, amount, items])
 
   // ============================================
