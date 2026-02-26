@@ -184,20 +184,14 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
   }
 
   // ============================================
-  // POLLING - Verificacao automatica de pagamento
+  // PIXEL - Dispara quando QR Code e exibido
   // ============================================
-  const hasDispatchedEvent = useRef(false)
+  const hasDispatchedPixel = useRef(false)
 
-  const handlePaymentConfirmed = useCallback(() => {
-    if (hasDispatchedEvent.current) return
-    hasDispatchedEvent.current = true
+  useEffect(() => {
+    if (step !== "qrcode" || hasDispatchedPixel.current) return
+    hasDispatchedPixel.current = true
 
-    // Remove pedido pendente
-    if (pixData?.transactionId) {
-      removePendingOrder(pixData.transactionId)
-    }
-
-    // Dispara todos os eventos de conversao APENAS apos confirmacao do gateway
     if (typeof window !== "undefined") {
       const transactionId = pixData?.transactionId || ""
 
@@ -235,10 +229,25 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
         })
       }
     }
+  }, [step, pixData, amount, items])
+
+  // ============================================
+  // POLLING - Verificacao automatica de pagamento
+  // ============================================
+  const hasDispatchedEvent = useRef(false)
+
+  const handlePaymentConfirmed = useCallback(() => {
+    if (hasDispatchedEvent.current) return
+    hasDispatchedEvent.current = true
+
+    // Remove pedido pendente
+    if (pixData?.transactionId) {
+      removePendingOrder(pixData.transactionId)
+    }
 
     // Mostrar tela de sucesso
     setStep("success")
-  }, [pixData, amount, items])
+  }, [pixData])
 
   useEffect(() => {
     if (step !== "qrcode" || !pixData?.transactionId) return
@@ -567,6 +576,20 @@ export function PixCheckout({ amount, items, onClose, onSuccess }: PixCheckoutPr
                 <Loader2 className="w-4 h-4 animate-spin text-primary" />
                 <span>Aguardando confirmacao do pagamento...</span>
               </div>
+
+              <Button
+                onClick={() => {
+                  if (pixData?.transactionId) {
+                    removePendingOrder(pixData.transactionId)
+                  }
+                  setStep("success")
+                }}
+                className="w-full py-6 bg-primary text-primary-foreground hover:bg-primary/90 gap-2 text-base font-semibold
+                  hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
+              >
+                <Check className="w-5 h-5" />
+                Ja fiz o pagamento
+              </Button>
             </div>
           )}
 
