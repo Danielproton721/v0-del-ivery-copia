@@ -210,9 +210,13 @@ export function UpsellCombo({ onAddCombo, editMode, onCancelEdit, startOpen }: U
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="font-medium text-foreground text-sm line-clamp-1">{product.name}</p>
-                    <p className="text-sm font-bold text-primary">
-                      R$ {product.price.toFixed(2).replace(".", ",")}
-                    </p>
+                    {product.price === 0 ? (
+                      <span className="text-sm font-bold text-green-600">Gratis</span>
+                    ) : (
+                      <p className="text-sm font-bold text-primary">
+                        R$ {product.price.toFixed(2).replace(".", ",")}
+                      </p>
+                    )}
                   </div>
 
                   <div className="flex items-center gap-2 shrink-0 bg-secondary rounded-lg px-2 py-1">
@@ -319,7 +323,11 @@ export function UpsellCombo({ onAddCombo, editMode, onCancelEdit, startOpen }: U
               {allSelected.map((s) => (
                 <div key={s.product.id} className="flex items-center justify-between text-sm text-muted-foreground">
                   <span className="truncate mr-2">{s.qty}x {s.product.name.substring(0, 22)}</span>
-                  <span className="shrink-0">R$ {(s.product.price * s.qty).toFixed(2).replace(".", ",")}</span>
+                  {s.product.price === 0 ? (
+                    <span className="shrink-0 text-green-600 font-semibold">Gratis</span>
+                  ) : (
+                    <span className="shrink-0">R$ {(s.product.price * s.qty).toFixed(2).replace(".", ",")}</span>
+                  )}
                 </div>
               ))}
               <div className="border-t border-amber-200 pt-2 mt-2">

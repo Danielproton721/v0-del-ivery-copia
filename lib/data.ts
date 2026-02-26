@@ -1583,6 +1583,16 @@ export const products: Product[] = [
     includes: ["6 unidades"],
     accompaniments: []
   },
+  {
+    id: "gelo-brinde-1kg",
+    name: "Saco de Gelo 1kg (Brinde)",
+    description: "Saco de gelo tradicional de 1kg. Brinde exclusivo para combos!",
+    price: 0,
+    image: "/images/gelo-1kg.jpg",
+    category: "poke",
+    includes: ["1 saco de 1kg"],
+    accompaniments: []
+  },
 
   // COMIDA
   {
@@ -2141,44 +2151,44 @@ export const products: Product[] = [
   },
   {
     id: "cd-01",
-    name: "Combo Vodka Absolut + Energetico + Gelo de Melancia",
-    description: "Combo com Vodka Absolut, energetico e gelo de melancia.",
-    price: 79.90,
-    originalPrice: 119.90,
+    name: "Combo Vodka Absolut + 4 Redbull Tropical + 2 Gelo de Melancia",
+    description: "Combo completo com 1 Vodka Absolut, 4 latas de Red Bull Tropical e 2 sacos de gelo de melancia. Perfeito para reunir os amigos.",
+    price: 64.35,
+    originalPrice: 91.93,
     image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/ChatGPTImage25defev.de2026_02_07_54.png?v=1771997405",
     category: "combos-destaques",
-    includes: ["1 Vodka Absolut", "1 Energetico", "Gelo de Melancia"],
+    includes: ["1 Vodka Absolut", "4 Red Bull Tropical", "2 Gelo de Melancia"],
     accompaniments: []
   },
   {
     id: "cd-02",
-    name: "Gin Tanqueray + Redbull + Gelo de Morango",
-    description: "Combo com Gin Tanqueray, Red Bull e gelo de morango.",
-    price: 89.90,
-    originalPrice: 139.90,
+    name: "Gin Tanqueray + 4 Redbull + 2 Gelo de Morango",
+    description: "Combo refrescante com 1 Gin Tanqueray, 4 latas de Red Bull e 2 sacos de gelo de morango. Ideal para drinks.",
+    price: 87.44,
+    originalPrice: 124.92,
     image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/ChatGPTImage25defev.de2026_03_01_43.png?v=1772002333",
     category: "combos-destaques",
-    includes: ["1 Gin Tanqueray", "1 Red Bull", "Gelo de Morango"],
+    includes: ["1 Gin Tanqueray", "4 Red Bull", "2 Gelo de Morango"],
     accompaniments: []
   },
   {
     id: "cd-03",
     name: "Combo Heineken Long Neck (6 unidades 330ml)",
-    description: "Pack com 6 Heineken Long Neck 330ml.",
-    price: 31.29,
+    description: "Pack com 6 garrafas de Heineken Long Neck 330ml. Cerveja puro malte premium, ideal para qualquer ocasiao.",
+    price: 21.78,
     originalPrice: 45.36,
-    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/5c12a8cb_1801_4c22_a0e5_b85b2ac5fde3.jpg?v=1772000721",
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/5c12a8cb_1801_4c22_a0e5_b85b2ac5fde3_processed.jpg?v=1772070794",
     category: "combos-destaques",
     includes: ["6 Heineken Long Neck 330ml"],
     accompaniments: []
   },
   {
     id: "cd-04",
-    name: "Combo Beefeater (Gin Beefeater 750ml + 6 Red Bull 250ml + Gelo)",
-    description: "Combo Express com Gin Beefeater 750ml, 6 Red Bull 250ml e Gelo.",
-    price: 87.11,
-    originalPrice: 116.13,
-    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/download-2026-02-17-T225659-238.png?v=1772000757",
+    name: "Combo Beefeater (Gin Beefeater 750ml + 6 Red Bull 250ml + Gelo) Express",
+    description: "Combo express com 1 Gin Beefeater 750ml, 6 latas de Red Bull 250ml e gelo. Tudo pronto para a festa.",
+    price: 86.05,
+    originalPrice: 122.93,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/download-2026-02-17-T225659-238_4ecea7f7-9f44-4d74-b30a-4dff83232706.png?v=1772070792",
     category: "combos-destaques",
     includes: ["1 Gin Beefeater 750ml", "6 Red Bull 250ml", "Gelo"],
     accompaniments: []
@@ -2186,10 +2196,10 @@ export const products: Product[] = [
   {
     id: "cd-05",
     name: "Combo Aperol Spritz",
-    description: "Combo completo para preparar Aperol Spritz.",
+    description: "Combo completo para preparar o classico Aperol Spritz em casa. Inclui Aperol, espumante e gelo.",
     price: 149.39,
     originalPrice: 195.75,
-    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/download-2026-02-17-T230130-693_31e9d8c4-04ba-42aa-bfc3-9427d377c699.png?v=1772000873",
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/download-2026-02-17-T230130-693_31e9d8c4-04ba-42aa-bfc3-9427d377c699c.png?v=1772070777",
     category: "combos-destaques",
     includes: ["Aperol", "Espumante", "Gelo"],
     accompaniments: []
@@ -2197,10 +2207,10 @@ export const products: Product[] = [
   {
     id: "cd-06",
     name: "Combo Heineken Latao (6 unidades 473ml)",
-    description: "Pack com 6 Heineken Latao 473ml.",
+    description: "Pack com 6 latas de Heineken Latao 473ml. Mais cerveja para curtir com os amigos.",
     price: 39.01,
     originalPrice: 50.71,
-    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/download-2026-02-12-T022709-417.png?v=1772000948",
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/download-2026-02-12-T022709-417c.png?v=1772070771",
     category: "combos-destaques",
     includes: ["6 Heineken Latao 473ml"],
     accompaniments: []
@@ -2208,10 +2218,10 @@ export const products: Product[] = [
   {
     id: "cd-07",
     name: "Combo Buchanan's (Whisky Buchanan's 1L + 6 Red Bull + Gelo)",
-    description: "Combo premium com Whisky Buchanan's 1L, 6 Red Bull e Gelo.",
-    price: 210.73,
-    originalPrice: 259.59,
-    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/download-1.png?v=1772000991",
+    description: "Combo premium com 1 Whisky Buchanan's 1L, 6 latas de Red Bull e gelo. Para quem aprecia um whisky de qualidade.",
+    price: 113.99,
+    originalPrice: 162.84,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/download-1c.png?v=1772070762",
     category: "combos-destaques",
     includes: ["1 Whisky Buchanan's 1L", "6 Red Bull", "Gelo"],
     accompaniments: []
@@ -2219,10 +2229,10 @@ export const products: Product[] = [
   {
     id: "cd-08",
     name: "Combo Black Label (Whisky Black Label 1L + 6 Red Bull + Gelo)",
-    description: "Combo premium com Whisky Black Label 1L, 6 Red Bull e Gelo.",
+    description: "Combo sofisticado com 1 Whisky Johnnie Walker Black Label 1L, 6 latas de Red Bull e gelo. Sabor marcante e equilibrado.",
     price: 210.65,
     originalPrice: 259.15,
-    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/download-3.png?v=1772001032",
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/download-3c.png?v=1772070742",
     category: "combos-destaques",
     includes: ["1 Whisky Black Label 1L", "6 Red Bull", "Gelo"],
     accompaniments: []
@@ -2230,10 +2240,10 @@ export const products: Product[] = [
   {
     id: "cd-09",
     name: "Combo Red Label (Whisky Red Label 1L + 6 Red Bull 250ml + Gelo)",
-    description: "Combo com Whisky Red Label 1L, 6 Red Bull 250ml e Gelo.",
-    price: 114.94,
-    originalPrice: 139.14,
-    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/download-2.png?v=1772001095",
+    description: "Combo com 1 Whisky Johnnie Walker Red Label 1L, 6 latas de Red Bull 250ml e gelo. O classico para festas.",
+    price: 64.99,
+    originalPrice: 92.84,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/download-2c.png?v=1772070736",
     category: "combos-destaques",
     includes: ["1 Whisky Red Label 1L", "6 Red Bull 250ml", "Gelo"],
     accompaniments: []
@@ -2241,10 +2251,10 @@ export const products: Product[] = [
   {
     id: "cd-10",
     name: "Combo Esquenta Smirnoff (1 Vodka Smirnoff + 6 Red Bull + Gelo)",
-    description: "Combo com Vodka Smirnoff, 6 Red Bull e Gelo.",
-    price: 84.18,
-    originalPrice: 99.63,
-    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/download-4.png?v=1772002006",
+    description: "Combo para esquentar a noite com 1 Vodka Smirnoff, 6 latas de Red Bull e gelo. Energia e sabor garantidos.",
+    price: 48.54,
+    originalPrice: 69.34,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/download-2026-02-17-T225659-238_5a6d2b10-daef-411e-9799-dd76930a5a46.png?v=1772070726",
     category: "combos-destaques",
     includes: ["1 Vodka Smirnoff", "6 Red Bull", "Gelo"],
     accompaniments: []
@@ -2252,10 +2262,10 @@ export const products: Product[] = [
   {
     id: "cd-11",
     name: "Combo Ballantine's Tropical",
-    description: "Combo tropical com Whisky Ballantine's.",
-    price: 191.30,
-    originalPrice: 222.95,
-    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/download-2026-02-17-T232210-404.png?v=1772002254",
+    description: "Combo tropical com Whisky Ballantine's e acompanhamentos para drinks refrescantes. Sabor suave com toque frutal.",
+    price: 57.64,
+    originalPrice: 82.35,
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/download-2026-02-17-T232210-404_processed.png?v=1772069926",
     category: "combos-destaques",
     includes: ["Whisky Ballantine's", "Acompanhamentos tropicais"],
     accompaniments: []
