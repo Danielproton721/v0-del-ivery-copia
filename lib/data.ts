@@ -2232,7 +2232,7 @@ export const products: Product[] = [
     description: "Combo sofisticado com 1 Whisky Johnnie Walker Black Label 1L, 6 latas de Red Bull e gelo. Sabor marcante e equilibrado.",
     price: 210.65,
     originalPrice: 259.15,
-    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/download-3c.png?v=1772070742",
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/image_4.jpg?v=1772088123",
     category: "combos-destaques",
     includes: ["1 Whisky Black Label 1L", "6 Red Bull", "Gelo"],
     accompaniments: []
