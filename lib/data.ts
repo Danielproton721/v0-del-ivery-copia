@@ -2221,7 +2221,7 @@ export const products: Product[] = [
     description: "Combo premium com 1 Whisky Buchanan's 1L, 6 latas de Red Bull e gelo. Para quem aprecia um whisky de qualidade.",
     price: 113.99,
     originalPrice: 162.84,
-    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/download-1c.png?v=1772070762",
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/image_3.jpg?v=1772087527",
     category: "combos-destaques",
     includes: ["1 Whisky Buchanan's 1L", "6 Red Bull", "Gelo"],
     accompaniments: []
@@ -2232,7 +2232,7 @@ export const products: Product[] = [
     description: "Combo sofisticado com 1 Whisky Johnnie Walker Black Label 1L, 6 latas de Red Bull e gelo. Sabor marcante e equilibrado.",
     price: 210.65,
     originalPrice: 259.15,
-    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/download-3c.png?v=1772070742",
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/image_4.jpg?v=1772088123",
     category: "combos-destaques",
     includes: ["1 Whisky Black Label 1L", "6 Red Bull", "Gelo"],
     accompaniments: []
@@ -2254,7 +2254,7 @@ export const products: Product[] = [
     description: "Combo para esquentar a noite com 1 Vodka Smirnoff, 6 latas de Red Bull e gelo. Energia e sabor garantidos.",
     price: 48.54,
     originalPrice: 69.34,
-    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/download-2026-02-17-T225659-238_5a6d2b10-daef-411e-9799-dd76930a5a46.png?v=1772070726",
+    image: "https://cdn.shopify.com/s/files/1/0807/3173/4230/files/download-4_processed.png?v=1772086445",
     category: "combos-destaques",
     includes: ["1 Vodka Smirnoff", "6 Red Bull", "Gelo"],
     accompaniments: []
