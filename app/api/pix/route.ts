@@ -31,41 +31,44 @@ export async function POST(request: NextRequest) {
 
     // Formatar documento
     const docNumber = customerDocument.replace(/\D/g, "")
-    const docType = docNumber.length > 11 ? "CNPJ" : "CPF"
+    const docType = docNumber.length > 11 ? "cnpj" : "cpf"
 
-    // Criar transacao PIX na PagouAI v2
-    console.log("[v0] Enviando request para PagouAI v2...")
+    // Criar transacao PIX na PagouAI v1 (Basic Auth)
+    console.log("[v0] Enviando request para PagouAI v1...")
     console.log("[v0] Payload amount (centavos):", amountInCents, "description:", description)
-    const response = await fetch("https://api.pagou.ai/v2/transactions", {
+    const response = await fetch("https://api.conta.pagou.ai/v1/transactions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${apiKey}`,
+        "Authorization": `Basic ${Buffer.from(`${apiKey}:x`).toString("base64")}`,
       },
       body: JSON.stringify({
         amount: amountInCents,
-        currency: "BRL",
-        method: "pix",
-        buyer: {
-          name: customerName,
-          email: customerEmail,
-          document: {
-            type: docType,
-            number: docNumber,
-          },
-          address: {
-            street: "N/A",
-            city: "N/A",
-            country: "BR",
-          },
-        },
-        products: [
+        paymentMethod: "pix",
+        items: [
           {
-            name: "Combo Escolhido",
-            amount: amountInCents,
-            quantity: totalQuantity,
+            id: "combo-1",
+            title: "Combo Escolhido",
+            unitPrice: amountInCents,
+            quantity: 1,
+            tangible: true,
           },
         ],
+        customer: {
+          name: customerName,
+          email: customerEmail,
+          phone: customerPhone ? customerPhone.replace(/\D/g, "") : undefined,
+          document: {
+            number: docNumber,
+            type: docType,
+          },
+        },
+        pix: {
+          expiresInDays: 1,
+        },
+        metadata: {
+          description: description,
+        },
       }),
     })
 
@@ -81,9 +84,11 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Extrair dados PIX da resposta PagouAI
-    const pixCode = data.pix?.qr_code || data.pix?.brcode || data.pix?.copy_paste || data.qr_code || data.brcode || ""
-    const transactionId = data.id || data.transaction_id || ""
+    // Extrair dados PIX da resposta PagouAI v1
+    const pixCode = data.pix?.qrcode || data.pix?.qr_code || data.pix?.brcode || ""
+    const transactionId = data.id || data.transactionId || ""
+    console.log("[v0] PIX code extraido:", pixCode ? pixCode.substring(0, 50) + "..." : "VAZIO")
+    console.log("[v0] Transaction ID:", transactionId)
 
     // Gerar imagem do QR Code via API publica
     const pixQrCodeImage = pixCode

@@ -21,11 +21,11 @@ export async function GET(request: NextRequest) {
       )
     }
 
-    // Consultar status da transacao na PagouAI
-    const response = await fetch(`https://api.pagou.ai/v2/transactions/${pedidoId}`, {
+    // Consultar status da transacao na PagouAI v1 (Basic Auth)
+    const response = await fetch(`https://api.conta.pagou.ai/v1/transactions/${pedidoId}`, {
       method: "GET",
       headers: {
-        "Authorization": `Bearer ${apiKey}`,
+        "Authorization": `Basic ${Buffer.from(`${apiKey}:x`).toString("base64")}`,
       },
     })
 
